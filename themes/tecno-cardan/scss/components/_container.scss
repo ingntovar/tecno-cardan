@@ -1,0 +1,4 @@
+.tc-container {
+  width: min(100% - 2rem, var(--tc-content-width));
+  margin: 0 auto;
+}

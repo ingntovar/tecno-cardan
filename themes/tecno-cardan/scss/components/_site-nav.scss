@@ -1,0 +1,32 @@
+.tc-site-nav {
+  background: var(--tc-color-surface);
+}
+
+.tc-site-nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--tc-space-m);
+  padding: var(--tc-space-m) 0;
+
+  @media (max-width: 700px) {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+.tc-nav-list,
+.tc-fallback-menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tc-nav-list a,
+.tc-fallback-menu a {
+  text-decoration: none;
+  font-weight: 600;
+}

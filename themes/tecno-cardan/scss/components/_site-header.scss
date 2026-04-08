@@ -1,0 +1,30 @@
+.tc-site-header {
+  background: var(--tc-color-surface);
+  border-bottom: 1px solid var(--tc-color-border);
+}
+
+.tc-site-branding {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--tc-space-m);
+  padding: var(--tc-space-m) 0;
+
+  @media (max-width: 700px) {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+.tc-site-title {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.tc-site-description {
+  margin: 0;
+  color: var(--tc-color-muted);
+  font-size: 0.95rem;
+}

@@ -1,0 +1,17 @@
+.tc-site-footer {
+  background: var(--tc-color-surface);
+  border-top: 1px solid var(--tc-color-border);
+}
+
+.tc-site-footer__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--tc-space-m);
+  padding: var(--tc-space-m) 0;
+
+  @media (max-width: 700px) {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
