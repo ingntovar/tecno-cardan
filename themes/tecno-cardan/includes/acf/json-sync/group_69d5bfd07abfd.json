@@ -87,7 +87,7 @@
             "clone": [
                 "group_69d5c07f3ade7"
             ],
-            "display": "seamless",
+            "display": "group",
             "layout": "block",
             "prefix_label": 0,
             "prefix_name": 0
@@ -112,5 +112,5 @@
     "description": "",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1775620786
+    "modified": 1775625999
 }
