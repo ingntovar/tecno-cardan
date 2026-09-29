@@ -1,23 +1,12 @@
 ---
-description: Wire a raw HTML source into a WordPress PHP template using the local ACF page-builder architecture. Receives: $1 raw HTML path, $2 PHP template path or template name, $3 ACF group JSON path, and optional $4 extra prompt path.
-agent: Sdd-Orchestrator
+description: Integrate structured HTML input as an ACF page-builder component through a dry-run approval workflow.
+agent: sdd-orchestrator
 ---
 
-Wire the raw HTML found at `$1` into the WordPress PHP template identified by `$2`, using the ACF field group JSON at `$3` as the data contract reference.
+Load and follow `.opencode/prompts/html-to-acf-component.prompt.md` as the authoritative integration prompt.
 
-Before doing implementation work, load and follow the local skill `wp-acf-page-builder` so the result stays aligned with the real page-builder architecture used in this repo.
+The user input is `$ARGUMENTS` and must be a structured object containing `html`, `component_name`, `component_slug`, `target_page`, and optional `visual_reference`.
 
-Inputs:
-- `$1`: raw HTML file path
-- `$2`: target PHP template path or template name
-- `$3`: related ACF field group JSON path
-- `$4`: optional extra prompt or guidance file path
+Pass the complete payload to the reusable prompt unchanged. Do not reinterpret it as positional arguments or require a pre-existing ACF JSON file.
 
-Use an SDD flow by phases instead of implementing everything at once:
-1. Inspect the HTML, template target, and ACF group structure.
-2. Propose how the HTML should map into the local builder/template architecture.
-3. Define the ACF wiring and template/component responsibilities.
-4. Apply the implementation in the correct WordPress/theme layer.
-5. Verify the final wiring is consistent with the local architecture and the provided ACF schema.
-
-If `$4` is provided, treat it as additional instructions that refine scope or constraints.
+The reusable prompt's missing-target stop, dry-run, explicit approval gate, ACF Local JSON generation, validation, and no-build rules are mandatory.

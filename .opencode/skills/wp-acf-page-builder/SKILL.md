@@ -28,6 +28,12 @@ metadata:
 - El builder vive en `includes/components/page-builder/`, no como un `home-builder` dentro de ACF.
 - ACF define y entrega datos; la logica de composicion, normalizacion y render vive en PHP del theme.
 
+### Component field-group ownership
+
+- Cuando crees un component asociado a un grupo de campos ACF, mantenelo granular en su propio Field Group JSON dedicado con `active: false`.
+- Nunca agregues los campos del component inline dentro del Page Builder.
+- El Page Builder debe consumir components nuevos mediante campos/layouts clonados desde ese Field Group; solo usa campos inline si el usuario lo solicita explicitamente.
+
 ### Render flow
 
 1. `front-page.php` y `index.php` enrutan paginas hacia `lff_assemble_template('frontpage')`.
@@ -124,13 +130,14 @@ $page_context = array(
 
 ## Add a New Layout Without Spaghetti
 
-1. Agrega el layout al flexible content `components` en `includes/acf/json-sync/`.
-2. Crea un normalizer nuevo en `includes/components/page-builder/normalizer/`.
-3. Registra el archivo en `includes/components/page-builder/normalizer/index.php`.
-4. Mapea el nuevo `acf_fc_layout` en `includes/components/page-builder/normalizer/component.php`.
-5. Devuelve una estructura estable con `component` y `args`.
-6. Crea o reutiliza un template presentacional en `pages/components/`.
-7. Si necesitas media/cards compartidas, reutiliza helpers existentes en vez de duplicar logica.
+1. Crea el Field Group JSON dedicado del component con `active: false`; no agregues sus campos inline al Page Builder.
+2. Expone el component en el flexible content `components` mediante un campo/layout clonado desde ese Field Group. Solo usa campos inline si el usuario lo solicita explicitamente.
+3. Crea un normalizer nuevo en `includes/components/page-builder/normalizer/`.
+4. Registra el archivo en `includes/components/page-builder/normalizer/index.php`.
+5. Mapea el nuevo `acf_fc_layout` en `includes/components/page-builder/normalizer/component.php`.
+6. Devuelve una estructura estable con `component` y `args`.
+7. Crea o reutiliza un template presentacional en `pages/components/`.
+8. Si necesitas media/cards compartidas, reutiliza helpers existentes en vez de duplicar logica.
 
 ### Minimal example
 
