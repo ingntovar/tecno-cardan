@@ -61,6 +61,18 @@ Inspect the actual repository and existing conventions before deciding file name
 - Ensure the new layout is available to the page builder without weakening existing layouts.
 - Validate that the JSON is valid and that field names match every PHP access.
 
+### Mandatory component field-group architecture
+
+This architecture is mandatory for every component associated with an ACF field group. It is an integration requirement, not a recommendation:
+
+- Create a separate, granular, dedicated ACF Field Group Local JSON for the component, with `active: false`.
+- Never add component fields inline to the Page Builder flexible-content group unless the user explicitly requests inline fields.
+- Expose the new component in the Page Builder through clone fields or layouts that reference the dedicated component Field Group.
+- Preserve stable field-group keys, field keys, clone references, and layout identifiers when creating or updating Local JSON.
+- Validate that every clone field/layout reference resolves to the intended dedicated Field Group and that no component field was duplicated inline in the Page Builder.
+
+If the proposed integration cannot satisfy these rules, stop the implementation and report the conflict instead of weakening or bypassing this architecture.
+
 ### Defensive data handling
 
 - Guard ACF access with the repository's established `function_exists('get_field')`, `is_array()`, `isset()`, and `empty()` patterns where applicable.
@@ -71,7 +83,7 @@ Inspect the actual repository and existing conventions before deciding file name
 
 ### Page-builder integration
 
-- Add or extend the ACF layout in the existing Local JSON flexible content group.
+- Expose the component in the existing Local JSON flexible-content group through a clone field/layout that references its dedicated Field Group; do not add its fields inline unless the user explicitly requests inline fields.
 - Add a dedicated normalizer in `includes/components/page-builder/normalizer/` when the component has non-trivial mapping.
 - Register the normalizer in the normalizer barrel and map the `acf_fc_layout` explicitly in the component router.
 - Return the stable shape `array('component' => '...', 'args' => array(...))`.
