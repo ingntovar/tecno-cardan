@@ -5,6 +5,7 @@ function tc_get_page_builder_context($post_id) {
     'include_page_data' => false,
     'heading' => '',
     'copy' => '',
+    'is_front_page' => function_exists('is_front_page') && is_front_page(),
   );
 
   $post_id = (int) $post_id;

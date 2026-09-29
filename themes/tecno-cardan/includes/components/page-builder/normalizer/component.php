@@ -7,5 +7,9 @@ function tc_normalize_page_builder_component($component, $page_context = array()
     return tc_normalize_hero_section($component, $page_context);
   }
 
+  if ($layout === 'three-colimn-content') {
+    return tc_normalize_three_colimn_content_section($component);
+  }
+
   return array();
 }
