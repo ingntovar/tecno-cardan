@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">Experience - gears and wrench</title>
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F7E7A6"/>
+      <stop offset="0.28" stop-color="#D9B34A"/>
+      <stop offset="0.62" stop-color="#9A6E13"/>
+      <stop offset="1" stop-color="#F0D47A"/>
+    </linearGradient>
+    <linearGradient id="navy" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#26394C"/>
+      <stop offset="1" stop-color="#07111D"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#000" flood-opacity=".28"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#shadow)">
+    <!-- rear gear -->
+    <g transform="translate(320 190)">
+      <path fill="url(#gold)" d="M-18-102h36l7 28c10 3 20 7 29 12l25-15 25 25-15 25c5 9 9 19 12 29l28 7v36l-28 7c-3 10-7 20-12 29l15 25-25 25-25-15c-9 5-19 9-29 12l-7 28h-36l-7-28c-10-3-20-7-29-12l-25 15-25-25 15-25c-5-9-9-19-12-29l-28-7V9l28-7c3-10 7-20 12-29l-15-25 25-25 25 15c9-5 19-9 29-12z"/>
+      <circle r="62" fill="url(#navy)" stroke="#E5C66A" stroke-width="10"/>
+      <circle r="30" fill="none" stroke="#CDA73B" stroke-width="11"/>
+    </g>
+
+    <!-- front gear -->
+    <g transform="translate(205 294)">
+      <path fill="url(#gold)" d="M-17-112h34l8 33c12 3 23 8 33 14l29-18 24 24-18 29c6 10 11 21 14 33l33 8v34l-33 8c-3 12-8 23-14 33l18 29-24 24-29-18c-10 6-21 11-33 14l-8 33h-34l-8-33c-12-3-23-8-33-14l-29 18-24-24 18-29c-6-10-11-21-14-33l-33-8v-34l33-8c3-12 8-23 14-33l-18-29 24-24 29 18c10-6 21-11 33-14z"/>
+      <circle r="68" fill="url(#navy)" stroke="#F0D47A" stroke-width="11"/>
+      <circle r="34" fill="none" stroke="#C99D2D" stroke-width="12"/>
+    </g>
+
+    <!-- wrench -->
+    <g transform="translate(293 288) rotate(-42)">
+      <path d="M-14 44h28v152c0 18-28 18-28 0z" fill="url(#gold)"/>
+      <path d="M-44-68c20-17 49-18 68-2l-35 31 9 24 25 8 35-31c6 25-5 53-27 67-30 20-70 10-88-22-14-25-8-57 13-75z" fill="url(#gold)"/>
+      <circle cx="0" cy="175" r="9" fill="#0A1724"/>
+    </g>
+  </g>
+</svg>

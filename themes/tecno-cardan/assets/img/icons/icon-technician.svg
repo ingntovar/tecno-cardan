@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">Industrial technician</title>
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F8E9AD"/>
+      <stop offset="0.3" stop-color="#DAB44B"/>
+      <stop offset="0.7" stop-color="#916612"/>
+      <stop offset="1" stop-color="#EACB67"/>
+    </linearGradient>
+    <linearGradient id="navy" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#344A60"/>
+      <stop offset="0.5" stop-color="#132436"/>
+      <stop offset="1" stop-color="#07111D"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="14" stdDeviation="11" flood-color="#000" flood-opacity=".28"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#shadow)">
+    <!-- torso -->
+    <path d="M105 438c9-86 57-133 151-133s142 47 151 133z" fill="url(#gold)" stroke="#76520E" stroke-width="8"/>
+    <path d="M185 320l71 43 71-43 40 118H145z" fill="url(#navy)" opacity=".96"/>
+    <path d="M208 310l48 53-28 75h-62l20-104zM304 310l-48 53 28 75h62l-20-104z" fill="url(#gold)"/>
+    <rect x="170" y="354" width="42" height="84" rx="9" fill="none" stroke="#D6AF43" stroke-width="7"/>
+    <rect x="300" y="354" width="42" height="84" rx="9" fill="none" stroke="#D6AF43" stroke-width="7"/>
+
+    <!-- neck -->
+    <path d="M214 270h84v62c-24 21-60 21-84 0z" fill="url(#gold)"/>
+
+    <!-- head -->
+    <path d="M180 150c5-67 39-104 76-104s71 37 76 104l-11 86c-8 52-36 80-65 80s-57-28-65-80z" fill="url(#gold)" stroke="#79550E" stroke-width="8"/>
+    <!-- face shadow/no explicit features -->
+    <path d="M212 201c23 10 65 10 88 0-3 55-19 90-44 90s-41-35-44-90z" fill="#0D1B29" opacity=".28"/>
+
+    <!-- hard hat -->
+    <path d="M160 150c5-73 46-113 96-113s91 40 96 113z" fill="url(#gold)" stroke="#77530E" stroke-width="9"/>
+    <path d="M141 153c0-13 10-23 23-23h184c13 0 23 10 23 23v8H141z" fill="url(#gold)" stroke="#77530E" stroke-width="8"/>
+    <path d="M244 46h24v94h-24z" fill="#F1D273" opacity=".8"/>
+
+    <!-- collar -->
+    <path d="M178 314l36-25 42 74-55-27zM334 314l-36-25-42 74 55-27z" fill="#F0D377" stroke="#876014" stroke-width="6"/>
+
+    <!-- shoulders -->
+    <path d="M105 438c5-54 25-92 60-115l28 115zM407 438c-5-54-25-92-60-115l-28 115z" fill="url(#gold)"/>
+  </g>
+</svg>
