@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">Driveshaft</title>
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F7E7A6"/>
+      <stop offset="0.32" stop-color="#D6AD3E"/>
+      <stop offset="0.68" stop-color="#8C6210"/>
+      <stop offset="1" stop-color="#E8C85B"/>
+    </linearGradient>
+    <linearGradient id="steel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#40566B"/>
+      <stop offset="0.45" stop-color="#152536"/>
+      <stop offset="1" stop-color="#06101B"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="14" stdDeviation="12" flood-color="#000" flood-opacity=".3"/>
+    </filter>
+  </defs>
+
+  <g transform="translate(256 256) rotate(-18)" filter="url(#shadow)">
+    <!-- central shaft -->
+    <rect x="-135" y="-37" width="270" height="74" rx="30" fill="url(#gold)" stroke="#7A560F" stroke-width="8"/>
+    <rect x="-105" y="-22" width="210" height="44" rx="20" fill="url(#steel)" opacity=".95"/>
+    <path d="M-92-18h184" stroke="#71889B" stroke-width="5" stroke-linecap="round" opacity=".55"/>
+    <rect x="-128" y="-31" width="24" height="62" rx="8" fill="url(#gold)"/>
+    <rect x="104" y="-31" width="24" height="62" rx="8" fill="url(#gold)"/>
+
+    <!-- left universal joint -->
+    <g transform="translate(-176 0)">
+      <rect x="-58" y="-45" width="88" height="90" rx="18" fill="url(#steel)" stroke="#C89F31" stroke-width="8"/>
+      <path d="M-30-62v124M-60 0h120" stroke="url(#gold)" stroke-width="22" stroke-linecap="round"/>
+      <circle r="21" fill="#0B1826" stroke="#E0BD55" stroke-width="8"/>
+      <path d="M-92-26h34v52h-34c-17 0-17-52 0-52z" fill="url(#gold)" stroke="#6D4E10" stroke-width="6"/>
+    </g>
+
+    <!-- right universal joint -->
+    <g transform="translate(176 0)">
+      <rect x="-30" y="-45" width="88" height="90" rx="18" fill="url(#steel)" stroke="#C89F31" stroke-width="8"/>
+      <path d="M30-62v124M-60 0h120" stroke="url(#gold)" stroke-width="22" stroke-linecap="round"/>
+      <circle r="21" fill="#0B1826" stroke="#E0BD55" stroke-width="8"/>
+      <path d="M58-26h34c17 0 17 52 0 52H58z" fill="url(#gold)" stroke="#6D4E10" stroke-width="6"/>
+    </g>
+
+    <!-- end caps -->
+    <circle cx="-268" cy="0" r="29" fill="url(#steel)" stroke="#E0BD55" stroke-width="9"/>
+    <circle cx="268" cy="0" r="29" fill="url(#steel)" stroke="#E0BD55" stroke-width="9"/>
+    <circle cx="-268" cy="0" r="10" fill="#D9B34A"/>
+    <circle cx="268" cy="0" r="10" fill="#D9B34A"/>
+  </g>
+</svg>

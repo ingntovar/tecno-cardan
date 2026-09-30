@@ -1,10 +1,11 @@
 <?php
 
 $cards = isset($cards) && is_array($cards) ? $cards : array();
+$card_count = count($cards);
 ?>
 <?php if (!empty($cards)) : ?>
   <section class="industrial-stats">
-    <div class="industrial-stats__container">
+    <div class="industrial-stats__container industrial-stats__container--count-<?php echo esc_attr((string) $card_count); ?>">
       <?php foreach ($cards as $card) : ?>
         <?php
         $icon_url = isset($card['icon_url']) ? (string) $card['icon_url'] : '';
