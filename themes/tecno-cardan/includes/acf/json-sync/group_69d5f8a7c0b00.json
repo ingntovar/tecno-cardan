@@ -3,6 +3,27 @@
     "title": "Component: Three Column Content",
     "fields": [
         {
+            "key": "field_69d5f8a7c00e",
+            "label": "Enable Column Content",
+            "name": "enable_column_content",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Enable text content for visible columns",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "Yes",
+            "ui_off_text": "No",
+            "allow_in_bindings": 0
+        },
+        {
             "key": "field_69d5f8a7c002",
             "label": "First Icon",
             "name": "first_icon",
@@ -30,7 +51,9 @@
             "placeholder": "Select an icon",
             "allow_in_bindings": 0,
             "allow_custom": 0,
-            "search_placeholder": ""
+            "search_placeholder": "",
+            "create_options": 0,
+            "save_options": 0
         },
         {
             "key": "field_69d5f8a7c00b",
@@ -41,7 +64,11 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "", "class": "", "id": ""},
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "message": "Hide this column",
             "default_value": 0,
             "ui": 1,
@@ -92,6 +119,40 @@
             "append": ""
         },
         {
+            "key": "field_69d5f8a7c00f",
+            "label": "First Content",
+            "name": "first_content",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_69d5f8a7c00e",
+                        "operator": "==",
+                        "value": "1"
+                    },
+                    {
+                        "field": "field_69d5f8a7c00b",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": "",
+            "placeholder": "",
+            "new_lines": "",
+            "allow_in_bindings": 0
+        },
+        {
             "key": "field_69d5f8a7c005",
             "label": "Second Icon",
             "name": "second_icon",
@@ -119,7 +180,9 @@
             "placeholder": "Select an icon",
             "allow_in_bindings": 0,
             "allow_custom": 0,
-            "search_placeholder": ""
+            "search_placeholder": "",
+            "create_options": 0,
+            "save_options": 0
         },
         {
             "key": "field_69d5f8a7c00c",
@@ -130,7 +193,11 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "", "class": "", "id": ""},
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "message": "Hide this column",
             "default_value": 0,
             "ui": 1,
@@ -181,6 +248,40 @@
             "append": ""
         },
         {
+            "key": "field_69d5f8a7c010",
+            "label": "Second Content",
+            "name": "second_content",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_69d5f8a7c00e",
+                        "operator": "==",
+                        "value": "1"
+                    },
+                    {
+                        "field": "field_69d5f8a7c00c",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": "",
+            "placeholder": "",
+            "new_lines": "",
+            "allow_in_bindings": 0
+        },
+        {
             "key": "field_69d5f8a7c008",
             "label": "Third Icon",
             "name": "third_icon",
@@ -208,7 +309,9 @@
             "placeholder": "Select an icon",
             "allow_in_bindings": 0,
             "allow_custom": 0,
-            "search_placeholder": ""
+            "search_placeholder": "",
+            "create_options": 0,
+            "save_options": 0
         },
         {
             "key": "field_69d5f8a7c00d",
@@ -219,7 +322,11 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "", "class": "", "id": ""},
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "message": "Hide this column",
             "default_value": 0,
             "ui": 1,
@@ -247,6 +354,40 @@
             "placeholder": "",
             "prepend": "",
             "append": ""
+        },
+        {
+            "key": "field_69d5f8a7c011",
+            "label": "Third Content",
+            "name": "third_content",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_69d5f8a7c00e",
+                        "operator": "==",
+                        "value": "1"
+                    },
+                    {
+                        "field": "field_69d5f8a7c00d",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": "",
+            "placeholder": "",
+            "new_lines": "",
+            "allow_in_bindings": 0
         }
     ],
     "location": [
@@ -268,5 +409,5 @@
     "description": "",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1790716068
+    "modified": 1790967022
 }
