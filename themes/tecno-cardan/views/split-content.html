@@ -1,0 +1,354 @@
+<section class="service-feature">
+  <!-- =========================
+       IMAGE SIDE
+       ========================= -->
+  <div class="service-feature__media">
+    <!-- Reemplaza esta imagen por la definitiva -->
+    <img
+      src="PLACEHOLDER-CARDAN.jpg"
+      alt="Fabricación de cardanes a medida"
+      class="service-feature__image"
+    />
+  </div>
+
+  <!-- =========================
+       CONTENT SIDE
+       ========================= -->
+  <div class="service-feature__content">
+    <div class="service-feature__inner">
+
+      <!-- Header -->
+      <div class="service-feature__header">
+
+        <!-- Reemplaza por tu SVG -->
+        <div class="service-feature__logo">
+          <img
+            src="PLACEHOLDER-ICON.svg"
+            alt=""
+            class="service-feature__logo-image"
+          />
+        </div>
+
+        <h2 class="service-feature__title">
+          Fabricación de
+          <span>Cardanes</span>
+          <br />
+          a Medida
+        </h2>
+      </div>
+
+      <!-- Description -->
+      <p class="service-feature__description">
+        Diseñamos y fabricamos
+        <strong>cardanes</strong>
+        según las especificaciones del cliente para asegurar una perfecta
+        adaptación a sus necesidades.
+      </p>
+
+      <!-- CTA -->
+      <a href="#" class="service-feature__cta">
+        <span>MÁS INFORMACIÓN</span>
+
+        <svg
+          class="service-feature__arrow"
+          width="22"
+          height="22"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path
+            d="M9 5L16 12L9 19"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </a>
+
+    </div>
+  </div>
+
+  <style>
+    .service-feature {
+      width: 100%;
+      min-height: 390px;
+
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      background: #101c35;
+      overflow: hidden;
+
+      font-family: Arial, Helvetica, sans-serif;
+
+      border-top: 1px solid rgba(201, 163, 92, 0.45);
+      border-bottom: 1px solid rgba(201, 163, 92, 0.45);
+    }
+
+    /* =========================
+       LEFT IMAGE
+       ========================= */
+
+    .service-feature__media {
+      position: relative;
+      min-height: 390px;
+      overflow: hidden;
+
+      /*
+       * Importante:
+       * NO hay gradient, máscara ni overlay.
+       * La fotografía termina exactamente
+       * donde empieza el contenido.
+       */
+    }
+
+    .service-feature__image {
+      display: block;
+      width: 100%;
+      height: 100%;
+
+      position: absolute;
+      inset: 0;
+
+      object-fit: cover;
+      object-position: center;
+
+      transition: transform 0.5s ease;
+    }
+
+    .service-feature:hover .service-feature__image {
+      transform: scale(1.015);
+    }
+
+    /* =========================
+       RIGHT CONTENT
+       ========================= */
+
+    .service-feature__content {
+      position: relative;
+
+      display: flex;
+      align-items: center;
+
+      padding: 48px 64px;
+
+      /*
+       * Fondo completamente independiente
+       * de la fotografía.
+       */
+      background:
+        radial-gradient(
+          circle at 75% 25%,
+          rgba(57, 79, 119, 0.22),
+          transparent 45%
+        ),
+        #111d37;
+
+      border-left: 1px solid rgba(215, 174, 82, 0.18);
+    }
+
+    .service-feature__inner {
+      width: 100%;
+      max-width: 620px;
+    }
+
+    /* =========================
+       HEADER / ICON / TITLE
+       ========================= */
+
+    .service-feature__header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      margin-bottom: 26px;
+    }
+
+    .service-feature__logo {
+      width: 88px;
+      height: 88px;
+
+      flex: 0 0 88px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .service-feature__logo-image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .service-feature__title {
+      margin: 0;
+
+      color: #f4f0e8;
+
+      font-size: clamp(28px, 2.5vw, 40px);
+      font-weight: 700;
+      line-height: 1.05;
+
+      letter-spacing: -0.02em;
+    }
+
+    .service-feature__title span {
+      display: inline-block;
+
+      padding: 3px 9px 5px;
+
+      color: #f3e0a2;
+
+      background: rgba(179, 139, 47, 0.35);
+
+      border-radius: 5px;
+    }
+
+    /* =========================
+       DESCRIPTION
+       ========================= */
+
+    .service-feature__description {
+      max-width: 590px;
+
+      margin: 0 0 30px;
+
+      color: #d4d6dc;
+
+      font-size: 18px;
+      line-height: 1.75;
+
+      font-weight: 400;
+    }
+
+    .service-feature__description strong {
+      color: #e1c675;
+      font-weight: 600;
+    }
+
+    /* =========================
+       CTA
+       ========================= */
+
+    .service-feature__cta {
+      min-height: 52px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+
+      padding: 0 24px 0 30px;
+
+      color: #111827;
+
+      background: linear-gradient(
+        180deg,
+        #dcb744 0%,
+        #bf8a19 100%
+      );
+
+      border: 1px solid #e0bc58;
+      border-radius: 3px;
+
+      box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.38),
+        inset 0 1px rgba(255, 255, 255, 0.3);
+
+      font-size: 16px;
+      font-weight: 700;
+
+      text-decoration: none;
+
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
+    }
+
+    .service-feature__cta:hover {
+      transform: translateY(-2px);
+
+      filter: brightness(1.07);
+
+      box-shadow:
+        0 7px 16px rgba(0, 0, 0, 0.4),
+        inset 0 1px rgba(255, 255, 255, 0.35);
+    }
+
+    .service-feature__arrow {
+      flex-shrink: 0;
+
+      transition: transform 0.2s ease;
+    }
+
+    .service-feature__cta:hover .service-feature__arrow {
+      transform: translateX(3px);
+    }
+
+    /* =========================
+       RESPONSIVE
+       ========================= */
+
+    @media (max-width: 900px) {
+      .service-feature {
+        grid-template-columns: 1fr;
+      }
+
+      .service-feature__media {
+        min-height: 320px;
+      }
+
+      .service-feature__content {
+        padding: 42px 32px;
+
+        border-left: 0;
+        border-top: 1px solid rgba(215, 174, 82, 0.18);
+      }
+
+      .service-feature__inner {
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .service-feature__media {
+        min-height: 260px;
+      }
+
+      .service-feature__content {
+        padding: 34px 22px;
+      }
+
+      .service-feature__header {
+        align-items: flex-start;
+        gap: 15px;
+      }
+
+      .service-feature__logo {
+        width: 66px;
+        height: 66px;
+        flex-basis: 66px;
+      }
+
+      .service-feature__title {
+        font-size: 27px;
+      }
+
+      .service-feature__description {
+        font-size: 16px;
+        line-height: 1.65;
+      }
+
+      .service-feature__cta {
+        width: 100%;
+        box-sizing: border-box;
+      }
+    }
+  </style>
+</section>

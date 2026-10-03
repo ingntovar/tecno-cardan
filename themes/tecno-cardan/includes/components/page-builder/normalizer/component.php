@@ -11,5 +11,9 @@ function tc_normalize_page_builder_component($component, $page_context = array()
     return tc_normalize_three_colimn_content_section($component);
   }
 
+  if ($layout === 'split-content') {
+    return tc_normalize_split_content_section($component);
+  }
+
   return array();
 }

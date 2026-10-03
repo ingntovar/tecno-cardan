@@ -3,32 +3,11 @@
     "title": "Component: CTA",
     "fields": [
         {
-            "key": "field_69d5c07fb86fa",
-            "label": "Text",
-            "name": "text",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": 1,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "allow_in_bindings": 0,
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
             "key": "field_69d5c09ab86fb",
             "label": "Url",
             "name": "url",
             "aria-label": "",
-            "type": "url",
+            "type": "link",
             "instructions": "",
             "required": 1,
             "conditional_logic": 0,
@@ -37,30 +16,8 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
             "allow_in_bindings": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_69d5c0a7b86fc",
-            "label": "Is Blank?",
-            "name": "is_blank",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "",
-            "default_value": 0,
-            "allow_in_bindings": 0,
-            "ui_on_text": "",
-            "ui_off_text": "",
-            "ui": 1
+            "return_format": "array"
         }
     ],
     "location": [

@@ -159,6 +159,38 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_69d6a11c8f2e9": {
+                    "key": "layout_69d6a11c8f2e9",
+                    "name": "split-content",
+                    "label": "Split Content",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_69d6a11c8f2ea",
+                            "label": "Split Content",
+                            "name": "split_content",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_69d6a11c8f2e0"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             },
             "min": "",

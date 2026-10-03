@@ -15,14 +15,14 @@ The caller must provide this structured input. Do not infer missing required val
 html: "path/to/source.html or raw HTML string"
 component_name: "Human-readable component name"
 component_slug: "kebab-case-slug"
-target_page: "WordPress page/template identifier"
+target_page: "WordPress page/template identifier or all"
 visual_reference: "optional/path/to/reference.png"
 ```
 
 - `html` is required and may be a file path or an explicitly supplied HTML string.
 - `component_name` is required and must be descriptive.
 - `component_slug` is required, lowercase, kebab-case, and safe for PHP/ACF identifiers.
-- `target_page` is required. If it is missing, empty, ambiguous, or does not identify one concrete page, **STOP immediately**, explain the missing input, and do not inspect or edit implementation files.
+- `target_page` is required and must be either one concrete WordPress page/template identifier or the exact string `"all"`. A concrete identifier scopes placement to that page/template. `"all"` scopes the integration to shared Page Builder availability and does not require or authorize direct placement in every template. If `target_page` is missing, empty, malformed, ambiguous, or neither a concrete identifier nor `"all"`, **STOP immediately**, explain the invalid input, and do not inspect or edit implementation files.
 - `visual_reference` is optional. If present, inspect it during exploration and use it only as visual guidance; do not invent content that is not supported by the HTML or reference.
 
 If the input is not supplied in the structure above, ask the user to provide it in that structure and stop.
@@ -39,12 +39,12 @@ Inspect the actual repository and existing conventions before deciding file name
 
 ## Safety and Approval Gate
 
-1. Validate the structured input and stop if `target_page` is missing.
-2. Explore read-only: inspect the HTML, optional visual reference, target page, current page-builder implementation, ACF Local JSON groups, existing components, normalizers, router, and SCSS architecture.
+1. Validate the structured input and stop if `target_page` is missing, empty, malformed, or neither a concrete identifier nor `"all"`.
+2. Explore read-only: inspect the HTML, optional visual reference, the concrete target page/template when specified, current page-builder implementation, ACF Local JSON groups, existing components, normalizers, router, and SCSS architecture.
 3. Produce a dry-run proposal before any edit. Include:
    - files to create or update;
    - proposed ACF field contract and defaults;
-   - target-page placement and why it is limited to that page;
+   - target scope: concrete page/template placement and why it is limited there, or shared Page Builder registration with no direct template placement when `target_page` is `"all"`;
    - router, normalizer, template, and SCSS integration;
    - risks, assumptions, validation commands, and files explicitly out of scope.
 4. Ask for explicit approval. Treat only a clear approval such as `approve`, `approved`, or an equivalent affirmative response as authorization.
@@ -88,7 +88,7 @@ If the proposed integration cannot satisfy these rules, stop the implementation 
 - Register the normalizer in the normalizer barrel and map the `acf_fc_layout` explicitly in the component router.
 - Return the stable shape `array('component' => '...', 'args' => array(...))`.
 - Render presentational markup in `pages/components/{component_slug}.php` using normalized `$args` only.
-- Integrate the component into the explicit `target_page` instance only. Do not make it appear on every page, alter unrelated pages, or silently add it to a global fallback.
+- When `target_page` is a concrete identifier, integrate the component into that page/template instance only. When it is `"all"`, register the component as available in the shared Page Builder without directly placing an instance into every template. In either case, do not alter unrelated pages or silently add the component to a global fallback.
 - Keep `pages/frontpage.php` and entry templates thin. Use the existing page assembler and builder boundaries.
 - **Never call `get_field()` from `pages/components/*.php`, `pages/frontpage.php`, or other presentational templates.**
 
@@ -114,7 +114,7 @@ After approved implementation:
 
 - Run `php -l` against every changed PHP file.
 - Validate every changed ACF Local JSON file with a JSON parser and inspect its schema shape.
-- Check that the target page is the only page receiving the new instance.
+- For a concrete `target_page`, check that only that page/template receives the new instance. For `target_page: "all"`, check that the component is available in the shared Page Builder and that no template received a direct instance automatically.
 - Check for `get_field()` in presentational templates and remove any new occurrences.
 - Review escaping and defensive guards for every dynamic value.
 - Review `git diff` and `git status --short` and report the exact changed files.
@@ -126,7 +126,7 @@ Report:
 
 - the approved implementation summary;
 - the ACF Local JSON file created or updated;
-- the exact target-page integration;
+- the exact target scope and integration;
 - files changed;
 - validation commands and results;
 - any unresolved visual or content assumptions;
@@ -143,4 +143,4 @@ Recommended invocation:
 /acf-wiring {"html":"/absolute/path/component.html","component_name":"Pricing table","component_slug":"pricing-table","target_page":"pricing","visual_reference":"/absolute/path/pricing.png"}
 ```
 
-The command must pass the payload to this prompt, perform the dry-run, and wait for explicit approval before any edit. If `target_page` is missing, the agent must stop without changes.
+The command must pass the payload to this prompt, perform the dry-run, and wait for explicit approval before any edit. If `target_page` is missing, empty, malformed, or neither a concrete identifier nor `"all"`, the agent must stop without changes.
