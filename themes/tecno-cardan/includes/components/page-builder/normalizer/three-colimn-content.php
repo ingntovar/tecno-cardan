@@ -5,6 +5,15 @@ function tc_normalize_three_colimn_content_section($component) {
     ? $component['three_colimn_content']
     : $component;
 
+  $content_enabled = !empty($content['enable_column_content']);
+  $normalize_content = function ($value) {
+    if (!is_scalar($value)) {
+      return '';
+    }
+
+    return trim(str_replace(array("\r\n", "\r"), "\n", (string) $value));
+  };
+
   $cards = array(
     array(
       'icon_url' => tc_get_three_column_icon_url($content['first_icon'] ?? ''),
@@ -12,6 +21,7 @@ function tc_normalize_three_colimn_content_section($component) {
       'description' => trim((string) ($content['first_description'] ?? '')),
       'description_strong' => false,
       'title' => '',
+      'content' => $content_enabled ? $normalize_content($content['first_content'] ?? '') : '',
       'hidden' => !empty($content['hide_first']),
     ),
     array(
@@ -20,6 +30,7 @@ function tc_normalize_three_colimn_content_section($component) {
       'description' => trim((string) ($content['second_description'] ?? '')),
       'description_strong' => true,
       'title' => '',
+      'content' => $content_enabled ? $normalize_content($content['second_content'] ?? '') : '',
       'hidden' => !empty($content['hide_second']),
     ),
     array(
@@ -28,6 +39,7 @@ function tc_normalize_three_colimn_content_section($component) {
       'description' => '',
       'description_strong' => false,
       'title' => trim((string) ($content['third_title'] ?? '')),
+      'content' => $content_enabled ? $normalize_content($content['third_content'] ?? '') : '',
       'hidden' => !empty($content['hide_third']),
     ),
   );
@@ -37,10 +49,13 @@ function tc_normalize_three_colimn_content_section($component) {
   }));
 
   foreach ($cards as $card) {
-    if ($card['icon_url'] !== '' || $card['number'] !== '' || $card['description'] !== '' || $card['title'] !== '') {
+    if ($card['icon_url'] !== '' || $card['number'] !== '' || $card['description'] !== '' || $card['title'] !== '' || $card['content'] !== '') {
       return array(
         'component' => 'three-colimn-content',
-        'args' => array('cards' => $cards),
+        'args' => array(
+          'content_enabled' => $content_enabled,
+          'cards' => $cards,
+        ),
       );
     }
   }
