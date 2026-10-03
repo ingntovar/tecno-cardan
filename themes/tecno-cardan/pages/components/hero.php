@@ -5,11 +5,11 @@ $copy = isset($copy) ? (string) $copy : '';
 $cta = isset($cta) && is_array($cta) ? $cta : array();
 $background_image_url = isset($background_image_url) ? (string) $background_image_url : '';
 
-$cta_text = isset($cta['text']) ? (string) $cta['text'] : '';
-$cta_url = isset($cta['url']) ? (string) $cta['url'] : '';
-$cta_is_blank = !empty($cta['is_blank']);
-$cta_target = $cta_is_blank ? '_blank' : '_self';
-$cta_rel = $cta_is_blank ? 'noopener noreferrer' : '';
+$cta_title = is_string($cta['title'] ?? null) ? $cta['title'] : '';
+$cta_url = is_string($cta['url'] ?? null) ? $cta['url'] : '';
+$cta_href = esc_url($cta_url);
+$cta_target = isset($cta['target']) && $cta['target'] === '_blank' ? '_blank' : '_self';
+$cta_rel = $cta_target === '_blank' ? 'noopener noreferrer' : '';
 $background_style = $background_image_url !== '' ? sprintf(' style="background-image: url(%s);"', esc_url($background_image_url)) : '';
 ?>
 <section class="hero">
@@ -28,14 +28,14 @@ $background_style = $background_image_url !== '' ? sprintf(' style="background-i
         <p class="hero__copy"><?php echo esc_html($copy); ?></p>
       <?php endif; ?>
 
-      <?php if ($cta_text !== '' && $cta_url !== '') : ?>
+      <?php if ($cta_title !== '' && $cta_href !== '') : ?>
         <a
           class="hero__cta"
-          href="<?php echo esc_url($cta_url); ?>"
+          href="<?php echo $cta_href; ?>"
           target="<?php echo esc_attr($cta_target); ?>"
           <?php if ($cta_rel) : ?>rel="<?php echo esc_attr($cta_rel); ?>"<?php endif; ?>
         >
-          <?php echo esc_html($cta_text); ?>
+          <?php echo esc_html($cta_title); ?>
         </a>
       <?php endif; ?>
     </div>

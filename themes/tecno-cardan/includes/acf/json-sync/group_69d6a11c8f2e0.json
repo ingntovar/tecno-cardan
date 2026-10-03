@@ -89,7 +89,7 @@
                 "driveshaft": "Driveshaft",
                 "technician": "Technician"
             },
-            "default_value": "",
+            "default_value": false,
             "return_format": "value",
             "allow_null": 1,
             "multiple": 0,
@@ -179,7 +179,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Diseñamos y fabricamos <strong>cardanes</strong> según las especificaciones del cliente para asegurar una perfecta adaptación a sus necesidades.",
+            "default_value": "Diseñamos y fabricamos <strong>cardanes<\/strong> según las especificaciones del cliente para asegurar una perfecta adaptación a sus necesidades.",
             "tabs": "visual",
             "toolbar": "split_content_bold",
             "media_upload": 0,
@@ -227,5 +227,5 @@
     "description": "",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1790967022
+    "modified": 1791002238
 }

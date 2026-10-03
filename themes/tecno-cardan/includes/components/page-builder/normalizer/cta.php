@@ -5,16 +5,22 @@ function tc_normalize_cta($cta) {
     return array();
   }
 
-  $text = trim((string) ($cta['text'] ?? ''));
-  $url = trim((string) ($cta['url'] ?? ''));
+  $link = isset($cta['url']) && is_array($cta['url']) ? $cta['url'] : array();
 
-  if ($text === '' || $url === '') {
+  if (!is_string($link['url'] ?? null) || !is_string($link['title'] ?? null)) {
+    return array();
+  }
+
+  $url = esc_url(trim($link['url']));
+  $title = trim($link['title']);
+
+  if ($url === '' || $title === '') {
     return array();
   }
 
   return array(
-    'text' => $text,
     'url' => $url,
-    'is_blank' => !empty($cta['is_blank']),
+    'title' => $title,
+    'target' => isset($link['target']) && $link['target'] === '_blank' ? '_blank' : '_self',
   );
 }
