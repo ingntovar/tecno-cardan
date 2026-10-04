@@ -1,42 +1,8 @@
 <?php
 
-$slides = isset($slides) && is_array($slides) ? $slides : array(
-  array(
-    'media_title' => 'INSTALACIONES MODERNAS',
-    'image_url' => '',
-    'image_alt' => '',
-    'title' => 'Más de 20 Años de Experiencia',
-    'description' => 'Nuestra trayectoria y compromiso nos han convertido en sinónimo de calidad y fiabilidad en la industria.',
-    'cta' => array(
-      'title' => 'MÁS INFORMACIÓN',
-      'url' => '#',
-    ),
-  ),
-  array(
-    'media_title' => 'EQUIPOS ESPECIALIZADOS',
-    'image_url' => '',
-    'image_alt' => '',
-    'title' => 'Tecnología para Cada Proyecto',
-    'description' => 'Contamos con equipos especializados para ofrecer procesos precisos, confiables y adaptados a cada necesidad.',
-    'cta' => array(
-      'title' => 'MÁS INFORMACIÓN',
-      'url' => '#',
-    ),
-  ),
-  array(
-    'media_title' => 'PERSONAL CALIFICADO',
-    'image_url' => '',
-    'image_alt' => '',
-    'title' => 'Técnicos Profesionales',
-    'description' => 'Nuestro equipo trabaja bajo estándares de calidad para entregar soluciones confiables y duraderas.',
-    'cta' => array(
-      'title' => 'MÁS INFORMACIÓN',
-      'url' => '#',
-    ),
-  ),
-);
+$slides = isset($slides) && is_array($slides) ? $slides : array();
 $slides = array_values(array_filter($slides, 'is_array'));
-$show_content = isset($show_content) ? (bool) $show_content : true;
+$show_content = isset($show_content) && (bool) $show_content;
 $slide_count = count($slides);
 ?>
 <?php if ($slide_count > 0) : ?>

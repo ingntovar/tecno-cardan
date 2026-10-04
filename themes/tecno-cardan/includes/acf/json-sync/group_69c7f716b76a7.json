@@ -191,6 +191,38 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_69d7a2ab3c009": {
+                    "key": "layout_69d7a2ab3c009",
+                    "name": "experience-carousel",
+                    "label": "Experience Carousel",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_69d7a2ab3c00a",
+                            "label": "Experience Carousel",
+                            "name": "experience_carousel",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_69d7a2ab3c001"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             },
             "min": "",
@@ -219,5 +251,5 @@
     "description": "",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1791002128
+    "modified": 1791126100
 }
