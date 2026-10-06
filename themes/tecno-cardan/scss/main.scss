@@ -1,10 +1,12 @@
 @use "components/tokens";
+@use "base/document";
 @use "components/container";
 @use "components/hero";
 @use "components/split-content";
 @use "components/three-colimn-content";
 @use "components/experience-carousel";
 @use "components/grid";
+@use "components/wysiwyg";
 @use "components/site-header";
 @use "components/site-nav";
 @use "components/site-footer";

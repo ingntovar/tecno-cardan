@@ -1,0 +1,978 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Prototipo técnico premium de contenido enriquecido para Tecno Cardan."
+    />
+    <title>Informe de transmisión | Tecno Cardan</title>
+
+    <style>
+      :root {
+        color-scheme: dark;
+        --tc-v2-navy: #0d1b2a;
+        --tc-v2-navy-deep: #08131f;
+        --tc-v2-navy-soft: #14263a;
+        --tc-v2-gold-pale: #f4e3b2;
+        --tc-v2-gold-light: #e0b95a;
+        --tc-v2-gold: #c9a35c;
+        --tc-v2-white: #ffffff;
+        --tc-v2-slate: #5f6b7a;
+        --tc-v2-border: #d7dde5;
+        --tc-v2-navy-rgb: 13 27 42;
+        --tc-v2-gold-rgb: 201 163 92;
+        --tc-v2-border-rgb: 215 221 229;
+        --tc-v2-shell: 76rem;
+        --tc-v2-copy: 46rem;
+        --tc-v2-sans: "Arial Narrow", "Roboto Condensed", Arial, Helvetica, sans-serif;
+        --tc-v2-body: Arial, Helvetica, sans-serif;
+        --tc-v2-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        min-width: 20rem;
+        margin: 0;
+        color: var(--tc-v2-border);
+        background: var(--tc-v2-navy-deep);
+        font-family: var(--tc-v2-body);
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      .tc-v2-skip-link {
+        position: fixed;
+        z-index: 50;
+        top: 0.75rem;
+        left: 0.75rem;
+        padding: 0.8rem 1rem;
+        color: var(--tc-v2-navy);
+        background: var(--tc-v2-gold-light);
+        font-weight: 700;
+        transform: translateY(-150%);
+      }
+
+      .tc-v2-skip-link:focus {
+        transform: translateY(0);
+      }
+
+      .tc-v2-sheet {
+        position: relative;
+        min-height: 100vh;
+        overflow: hidden;
+        background:
+          linear-gradient(90deg, transparent calc(50% - 0.5px), rgba(var(--tc-v2-border-rgb), 0.035) 50%, transparent calc(50% + 0.5px)),
+          var(--tc-v2-navy);
+        border-block: 1px solid rgba(var(--tc-v2-gold-rgb), 0.7);
+      }
+
+      .tc-v2-sheet::before {
+        position: absolute;
+        inset: 0;
+        content: "";
+        pointer-events: none;
+        background-image:
+          linear-gradient(rgba(var(--tc-v2-border-rgb), 0.025) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(var(--tc-v2-border-rgb), 0.025) 1px, transparent 1px);
+        background-size: 4rem 4rem;
+      }
+
+      .tc-v2-sheet__topline,
+      .tc-v2-sheet__hero,
+      .tc-v2-sheet__body,
+      .tc-v2-sheet__footer {
+        position: relative;
+        width: min(100% - 3rem, var(--tc-v2-shell));
+        margin-inline: auto;
+      }
+
+      .tc-v2-sheet__topline {
+        display: flex;
+        min-height: 3.5rem;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        color: var(--tc-v2-gold-pale);
+        border-bottom: 1px solid rgba(var(--tc-v2-border-rgb), 0.18);
+        font-family: var(--tc-v2-mono);
+        font-size: 0.68rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .tc-v2-sheet__topline p {
+        margin: 0;
+      }
+
+      .tc-v2-sheet__status {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        color: var(--tc-v2-white);
+      }
+
+      .tc-v2-sheet__status::before {
+        width: 0.45rem;
+        height: 0.45rem;
+        content: "";
+        background: var(--tc-v2-gold-light);
+        border-radius: 50%;
+        box-shadow: 0 0 0 0.2rem rgba(var(--tc-v2-gold-rgb), 0.12);
+      }
+
+      .tc-v2-sheet__hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(15rem, 20rem);
+        gap: clamp(3rem, 8vw, 8rem);
+        align-items: end;
+        padding-block: clamp(4rem, 9vw, 8rem) clamp(3.5rem, 7vw, 6rem);
+      }
+
+      .tc-v2-sheet__kicker {
+        display: flex;
+        align-items: center;
+        gap: 0.85rem;
+        margin: 0 0 1.4rem;
+        color: var(--tc-v2-gold-light);
+        font-family: var(--tc-v2-mono);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .tc-v2-sheet__kicker::before {
+        width: 2.5rem;
+        height: 1px;
+        content: "";
+        background: var(--tc-v2-gold);
+      }
+
+      .tc-v2-sheet__title {
+        max-width: 53rem;
+        margin: 0;
+        color: var(--tc-v2-white);
+        font-family: var(--tc-v2-sans);
+        font-size: clamp(2.8rem, 7.5vw, 6.5rem);
+        font-stretch: condensed;
+        font-weight: 700;
+        line-height: 0.92;
+        letter-spacing: -0.055em;
+        text-transform: uppercase;
+        text-wrap: balance;
+      }
+
+      .tc-v2-sheet__title span {
+        display: block;
+        color: var(--tc-v2-gold-pale);
+        font-weight: 400;
+      }
+
+      .tc-v2-sheet__lede {
+        max-width: 42rem;
+        margin: 2rem 0 0;
+        color: var(--tc-v2-border);
+        font-size: clamp(1.05rem, 2vw, 1.3rem);
+        line-height: 1.7;
+      }
+
+      .tc-v2-sheet__identity {
+        position: relative;
+        padding: 1.5rem;
+        background: rgba(8, 19, 31, 0.58);
+        border: 1px solid rgba(var(--tc-v2-gold-rgb), 0.48);
+      }
+
+      .tc-v2-sheet__identity::before,
+      .tc-v2-sheet__identity::after {
+        position: absolute;
+        width: 1rem;
+        height: 1rem;
+        content: "";
+        border-color: var(--tc-v2-gold-light);
+      }
+
+      .tc-v2-sheet__identity::before {
+        top: -1px;
+        left: -1px;
+        border-top: 2px solid;
+        border-left: 2px solid;
+      }
+
+      .tc-v2-sheet__identity::after {
+        right: -1px;
+        bottom: -1px;
+        border-right: 2px solid;
+        border-bottom: 2px solid;
+      }
+
+      .tc-v2-sheet__icon {
+        display: block;
+        width: min(100%, 13rem);
+        height: 5rem;
+        margin: 0 auto 1.25rem;
+        object-fit: contain;
+      }
+
+      .tc-v2-sheet__identity dl {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 0.55rem 1rem;
+        margin: 0;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(var(--tc-v2-border-rgb), 0.16);
+        font-family: var(--tc-v2-mono);
+        font-size: 0.68rem;
+        line-height: 1.45;
+        text-transform: uppercase;
+      }
+
+      .tc-v2-sheet__identity dt {
+        color: var(--tc-v2-slate);
+      }
+
+      .tc-v2-sheet__identity dd {
+        margin: 0;
+        color: var(--tc-v2-gold-pale);
+        text-align: right;
+      }
+
+      .tc-v2-sheet__body {
+        display: grid;
+        grid-template-columns: minmax(10rem, 14rem) minmax(0, var(--tc-v2-copy));
+        gap: clamp(3rem, 7vw, 7rem);
+        justify-content: center;
+        padding-block: clamp(3.5rem, 7vw, 6.5rem);
+        border-top: 1px solid rgba(var(--tc-v2-border-rgb), 0.18);
+      }
+
+      .tc-v2-sheet__rail {
+        align-self: start;
+        font-family: var(--tc-v2-mono);
+        font-size: 0.7rem;
+      }
+
+      .tc-v2-sheet__rail-inner {
+        position: sticky;
+        top: 1.5rem;
+      }
+
+      .tc-v2-sheet__rail-label {
+        margin: 0 0 1.1rem;
+        color: var(--tc-v2-gold-light);
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .tc-v2-sheet__rail-list {
+        margin-bottom: 2rem;
+        border-top: 1px solid rgba(var(--tc-v2-border-rgb), 0.22);
+      }
+
+      .tc-v2-sheet__rail-list dl {
+        margin: 0;
+        padding-block: 0.8rem;
+        border-bottom: 1px solid rgba(var(--tc-v2-border-rgb), 0.12);
+      }
+
+      .tc-v2-sheet__rail dt {
+        margin-bottom: 0.3rem;
+        color: var(--tc-v2-slate);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .tc-v2-sheet__rail dd {
+        margin: 0;
+        color: var(--tc-v2-border);
+        line-height: 1.45;
+      }
+
+      .tc-v2-sheet__rail a {
+        display: inline-block;
+        color: var(--tc-v2-gold-pale);
+        line-height: 1.5;
+        text-decoration-color: rgba(var(--tc-v2-gold-rgb), 0.6);
+        text-underline-offset: 0.25em;
+      }
+
+      .tc-v2-copy {
+        min-width: 0;
+        color: var(--tc-v2-border);
+        font-size: clamp(1.02rem, 1.4vw, 1.125rem);
+        line-height: 1.85;
+      }
+
+      .tc-v2-copy > :first-child {
+        margin-top: 0;
+      }
+
+      .tc-v2-copy > :last-child {
+        margin-bottom: 0;
+      }
+
+      .tc-v2-copy p {
+        margin: 0 0 1.55rem;
+      }
+
+      .tc-v2-copy .tc-v2-copy__lead {
+        margin-bottom: 2.5rem;
+        color: var(--tc-v2-white);
+        font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+        line-height: 1.55;
+      }
+
+      .tc-v2-copy h2,
+      .tc-v2-copy h3 {
+        color: var(--tc-v2-white);
+        font-family: var(--tc-v2-sans);
+        line-height: 1.15;
+        text-wrap: balance;
+      }
+
+      .tc-v2-copy h2 {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 1rem;
+        align-items: center;
+        margin: 5rem 0 1.5rem;
+        font-size: clamp(1.75rem, 4vw, 2.6rem);
+        letter-spacing: -0.025em;
+        text-transform: uppercase;
+      }
+
+      .tc-v2-copy h2::before {
+        display: grid;
+        width: 2.6rem;
+        height: 2.6rem;
+        place-items: center;
+        color: var(--tc-v2-navy);
+        content: counter(section, decimal-leading-zero);
+        background: var(--tc-v2-gold-light);
+        font-family: var(--tc-v2-mono);
+        font-size: 0.72rem;
+        letter-spacing: 0;
+      }
+
+      .tc-v2-copy {
+        counter-reset: section;
+      }
+
+      .tc-v2-copy h2 {
+        counter-increment: section;
+      }
+
+      .tc-v2-copy h3 {
+        margin: 2.75rem 0 0.8rem;
+        color: var(--tc-v2-gold-pale);
+        font-size: clamp(1.15rem, 2vw, 1.4rem);
+        letter-spacing: 0.01em;
+      }
+
+      .tc-v2-copy a:not(.tc-v2-button) {
+        color: var(--tc-v2-gold-pale);
+        font-weight: 700;
+        text-decoration-color: var(--tc-v2-gold);
+        text-decoration-thickness: 2px;
+        text-underline-offset: 0.24em;
+      }
+
+      .tc-v2-copy ul,
+      .tc-v2-copy ol {
+        margin: 1.6rem 0 2.2rem;
+        padding-left: 1.45rem;
+      }
+
+      .tc-v2-copy li {
+        margin-bottom: 0.75rem;
+        padding-left: 0.45rem;
+      }
+
+      .tc-v2-copy li::marker {
+        color: var(--tc-v2-gold-light);
+        font-family: var(--tc-v2-mono);
+        font-weight: 700;
+      }
+
+      .tc-v2-copy strong {
+        color: var(--tc-v2-white);
+      }
+
+      .tc-v2-copy blockquote {
+        position: relative;
+        margin: 3.5rem 0;
+        padding: 2rem 0 0 4.5rem;
+        color: var(--tc-v2-gold-pale);
+        border-top: 1px solid var(--tc-v2-gold);
+        font-size: clamp(1.3rem, 2.7vw, 1.8rem);
+        font-weight: 700;
+        line-height: 1.5;
+      }
+
+      .tc-v2-copy blockquote::before {
+        position: absolute;
+        top: 2rem;
+        left: 0;
+        color: var(--tc-v2-gold-light);
+        content: "//";
+        font-family: var(--tc-v2-mono);
+        font-size: 1rem;
+        letter-spacing: -0.15em;
+      }
+
+      .tc-v2-copy blockquote p {
+        margin: 0;
+      }
+
+      .tc-v2-copy blockquote cite {
+        display: block;
+        margin-top: 1.1rem;
+        color: var(--tc-v2-slate);
+        font-family: var(--tc-v2-mono);
+        font-size: 0.68rem;
+        font-style: normal;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .tc-v2-copy figure {
+        margin: 3.75rem 0;
+        padding: 0.75rem;
+        background: var(--tc-v2-navy-deep);
+        border: 1px solid rgba(var(--tc-v2-border-rgb), 0.2);
+      }
+
+      .tc-v2-copy figure img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-bottom: 1px solid rgba(var(--tc-v2-gold-rgb), 0.5);
+      }
+
+      .tc-v2-copy figcaption {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 1rem;
+        padding: 0.9rem 0.25rem 0.15rem;
+        color: var(--tc-v2-slate);
+        font-family: var(--tc-v2-mono);
+        font-size: 0.68rem;
+        line-height: 1.55;
+      }
+
+      .tc-v2-copy figcaption::before {
+        color: var(--tc-v2-gold-light);
+        content: "REG. VISUAL 02";
+        font-weight: 700;
+        letter-spacing: 0.08em;
+      }
+
+      .tc-v2-table-wrap {
+        margin: 2.25rem 0 3.5rem;
+        overflow-x: auto;
+        border: 1px solid rgba(var(--tc-v2-border-rgb), 0.22);
+      }
+
+      .tc-v2-copy table {
+        width: 100%;
+        min-width: 39rem;
+        border-collapse: collapse;
+        font-size: 0.9rem;
+        line-height: 1.55;
+      }
+
+      .tc-v2-copy caption {
+        padding: 1rem 1.2rem;
+        color: var(--tc-v2-gold-pale);
+        background: var(--tc-v2-navy-deep);
+        border-bottom: 1px solid rgba(var(--tc-v2-gold-rgb), 0.5);
+        font-family: var(--tc-v2-mono);
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-align: left;
+        text-transform: uppercase;
+      }
+
+      .tc-v2-copy th,
+      .tc-v2-copy td {
+        padding: 0.95rem 1.2rem;
+        border-right: 1px solid rgba(var(--tc-v2-border-rgb), 0.12);
+        border-bottom: 1px solid rgba(var(--tc-v2-border-rgb), 0.12);
+        text-align: left;
+        vertical-align: top;
+      }
+
+      .tc-v2-copy th:last-child,
+      .tc-v2-copy td:last-child {
+        border-right: 0;
+      }
+
+      .tc-v2-copy tbody tr:last-child td {
+        border-bottom: 0;
+      }
+
+      .tc-v2-copy th {
+        color: var(--tc-v2-gold-pale);
+        background: rgba(var(--tc-v2-gold-rgb), 0.08);
+        font-family: var(--tc-v2-mono);
+        font-size: 0.67rem;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+      }
+
+      .tc-v2-copy td:last-child {
+        color: var(--tc-v2-white);
+        font-family: var(--tc-v2-mono);
+        font-size: 0.78rem;
+      }
+
+      .tc-v2-callout {
+        position: relative;
+        margin: 3.5rem 0;
+        padding: 1.75rem 2rem 1.75rem 5.25rem;
+        background: var(--tc-v2-gold-pale);
+        border-left: 0.35rem solid var(--tc-v2-gold-light);
+        color: var(--tc-v2-navy);
+      }
+
+      .tc-v2-callout::before {
+        position: absolute;
+        top: 1.75rem;
+        left: 1.7rem;
+        color: var(--tc-v2-gold);
+        content: "i";
+        font-family: var(--tc-v2-mono);
+        font-size: 2rem;
+        font-weight: 700;
+        line-height: 1;
+      }
+
+      .tc-v2-callout h3 {
+        margin: 0 0 0.45rem;
+        color: var(--tc-v2-navy);
+        font-family: var(--tc-v2-mono);
+        font-size: 0.76rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .tc-v2-callout p {
+        margin: 0;
+        font-size: 0.98rem;
+        line-height: 1.65;
+      }
+
+      .tc-v2-actions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+        margin-top: 3.5rem;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(var(--tc-v2-border-rgb), 0.18);
+      }
+
+      .tc-v2-button {
+        display: inline-flex;
+        min-height: 3.5rem;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.9rem 1.2rem;
+        color: var(--tc-v2-navy);
+        background: var(--tc-v2-gold-light);
+        border: 1px solid var(--tc-v2-gold-light);
+        font-family: var(--tc-v2-mono);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        line-height: 1.3;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+      }
+
+      .tc-v2-button::after {
+        content: "+";
+        font-size: 1.2rem;
+      }
+
+      .tc-v2-button--secondary {
+        color: var(--tc-v2-gold-pale);
+        background: transparent;
+        border-color: rgba(var(--tc-v2-gold-rgb), 0.65);
+      }
+
+      .tc-v2-button:hover,
+      .tc-v2-button:focus-visible {
+        color: var(--tc-v2-navy);
+        background: var(--tc-v2-gold-pale);
+        transform: translateY(-2px);
+      }
+
+      .tc-v2-sheet__footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        padding-block: 1.25rem;
+        color: var(--tc-v2-slate);
+        border-top: 1px solid rgba(var(--tc-v2-border-rgb), 0.18);
+        font-family: var(--tc-v2-mono);
+        font-size: 0.65rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .tc-v2-sheet__footer p {
+        margin: 0;
+      }
+
+      .tc-v2-sheet a:hover {
+        text-decoration-color: var(--tc-v2-gold-pale);
+      }
+
+      .tc-v2-sheet :focus-visible {
+        outline: 3px solid var(--tc-v2-gold-light);
+        outline-offset: 4px;
+      }
+
+      @media (max-width: 850px) {
+        .tc-v2-sheet__hero {
+          grid-template-columns: 1fr;
+          gap: 3rem;
+        }
+
+        .tc-v2-sheet__identity {
+          display: grid;
+          grid-template-columns: minmax(8rem, 13rem) 1fr;
+          gap: 1.5rem;
+          align-items: center;
+        }
+
+        .tc-v2-sheet__icon {
+          margin-bottom: 0;
+        }
+
+        .tc-v2-sheet__identity dl {
+          padding-top: 0;
+          padding-left: 1.5rem;
+          border-top: 0;
+          border-left: 1px solid rgba(var(--tc-v2-border-rgb), 0.16);
+        }
+
+        .tc-v2-sheet__body {
+          grid-template-columns: 1fr;
+          gap: 3rem;
+        }
+
+        .tc-v2-sheet__rail-inner {
+          position: static;
+          display: grid;
+          grid-template-columns: 1fr auto;
+          gap: 1.5rem 2rem;
+        }
+
+        .tc-v2-sheet__rail-label {
+          grid-column: 1 / -1;
+          margin-bottom: 0;
+        }
+
+        .tc-v2-sheet__rail-list {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          margin: 0;
+          border-top: 1px solid rgba(var(--tc-v2-border-rgb), 0.22);
+          border-bottom: 1px solid rgba(var(--tc-v2-border-rgb), 0.12);
+        }
+
+        .tc-v2-sheet__rail-list dl {
+          padding: 0.75rem;
+          border-right: 1px solid rgba(var(--tc-v2-border-rgb), 0.12);
+          border-bottom: 0;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .tc-v2-sheet__topline,
+        .tc-v2-sheet__hero,
+        .tc-v2-sheet__body,
+        .tc-v2-sheet__footer {
+          width: min(100% - 2rem, var(--tc-v2-shell));
+        }
+
+        .tc-v2-sheet__topline p:last-child,
+        .tc-v2-sheet__footer p:last-child {
+          display: none;
+        }
+
+        .tc-v2-sheet__identity {
+          grid-template-columns: 1fr;
+        }
+
+        .tc-v2-sheet__identity dl {
+          padding-top: 1rem;
+          padding-left: 0;
+          border-top: 1px solid rgba(var(--tc-v2-border-rgb), 0.16);
+          border-left: 0;
+        }
+
+        .tc-v2-sheet__rail-inner {
+          grid-template-columns: 1fr;
+        }
+
+        .tc-v2-sheet__rail-label {
+          grid-column: auto;
+        }
+
+        .tc-v2-sheet__rail-list {
+          grid-template-columns: 1fr;
+        }
+
+        .tc-v2-sheet__rail-list dl {
+          padding-inline: 0;
+          border-right: 0;
+          border-bottom: 1px solid rgba(var(--tc-v2-border-rgb), 0.12);
+        }
+
+        .tc-v2-copy h2 {
+          grid-template-columns: 1fr;
+          margin-top: 4rem;
+        }
+
+        .tc-v2-copy blockquote {
+          padding-left: 2.5rem;
+        }
+
+        .tc-v2-copy figcaption {
+          grid-template-columns: 1fr;
+        }
+
+        .tc-v2-callout {
+          padding: 4.25rem 1.35rem 1.5rem;
+        }
+
+        .tc-v2-callout::before {
+          top: 1.35rem;
+          left: 1.35rem;
+        }
+
+        .tc-v2-actions {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        .tc-v2-sheet *,
+        .tc-v2-sheet *::before,
+        .tc-v2-sheet *::after {
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <a class="tc-v2-skip-link" href="#contenido-tecnico">Saltar al contenido técnico</a>
+
+    <main>
+      <article class="tc-v2-sheet" aria-labelledby="tc-v2-title">
+        <div class="tc-v2-sheet__topline" aria-label="Estado del documento">
+          <p class="tc-v2-sheet__status">Informe técnico validado</p>
+          <p>TC / Transmisiones / 024</p>
+        </div>
+
+        <header class="tc-v2-sheet__hero">
+          <div>
+            <p class="tc-v2-sheet__kicker">Ingeniería de transmisión</p>
+            <h1 class="tc-v2-sheet__title" id="tc-v2-title">
+              Geometría del cardán
+              <span>bajo carga real</span>
+            </h1>
+            <p class="tc-v2-sheet__lede">
+              Criterios de inspección para reconocer desalineación, proteger los apoyos y recuperar una transmisión estable antes de que la vibración se convierta en una falla mayor.
+            </p>
+          </div>
+
+          <aside class="tc-v2-sheet__identity" aria-label="Identificación del informe">
+            <img
+              class="tc-v2-sheet__icon"
+              src="../assets/img/icons/icon-driveshaft.svg"
+              alt=""
+              width="150"
+              height="80"
+              aria-hidden="true"
+            />
+            <dl>
+              <dt>Documento</dt>
+              <dd>TC-ING-024</dd>
+              <dt>Revisión</dt>
+              <dd>02 / 2026</dd>
+              <dt>Aplicación</dt>
+              <dd>Pesada</dd>
+              <dt>Lectura</dt>
+              <dd>9 min</dd>
+            </dl>
+          </aside>
+        </header>
+
+        <div class="tc-v2-sheet__body">
+          <aside class="tc-v2-sheet__rail" aria-label="Ficha del contenido">
+            <div class="tc-v2-sheet__rail-inner">
+              <p class="tc-v2-sheet__rail-label">Ficha de campo</p>
+              <div class="tc-v2-sheet__rail-list">
+                <dl>
+                  <dt>Especialidad</dt>
+                  <dd>Diagnóstico dinámico</dd>
+                </dl>
+                <dl>
+                  <dt>Variables</dt>
+                  <dd>Ángulo / fase / RPM</dd>
+                </dl>
+                <dl>
+                  <dt>Responsable</dt>
+                  <dd>Equipo Tecno Cardan</dd>
+                </dl>
+              </div>
+              <a href="#parametros">Ir a parámetros ↓</a>
+            </div>
+          </aside>
+
+          <div class="tc-v2-copy" id="contenido-tecnico">
+            <p class="tc-v2-copy__lead">
+              Una transmisión puede verse intacta y, sin embargo, trabajar fuera de geometría. La diferencia entre una corrección precisa y un recambio innecesario está en medir el sistema completo, no solamente sus piezas.
+            </p>
+
+            <p>
+              El eje cardánico compensa distancia y movimiento entre componentes que no permanecen alineados. Esa capacidad no elimina las exigencias geométricas: los ángulos de entrada y salida deben relacionarse correctamente, las horquillas deben conservar la fase y el conjunto debe girar sin excentricidad relevante.
+            </p>
+
+            <p>
+              Cuando esas condiciones cambian, la velocidad angular deja de transmitirse de forma uniforme. El resultado puede sentirse como una vibración cíclica, pero también puede aparecer como desgaste acelerado en crucetas, rulemanes, retenes o soportes. Una <a href="#evaluacion">evaluación profesional</a> busca el origen de esa cadena, no solo el síntoma más evidente.
+            </p>
+
+            <h2 id="geometria">Leer el conjunto como sistema</h2>
+            <p>
+              El diagnóstico comienza con el vehículo o la máquina en su condición habitual de trabajo. Altura, carga, suspensión y posición de los apoyos modifican los ángulos efectivos; medir con el conjunto descargado puede describir un escenario que nunca existe durante la operación.
+            </p>
+
+            <h3>Indicadores que deben registrarse</h3>
+            <ul>
+              <li>Rango de velocidad o RPM en el que aparece la vibración.</li>
+              <li>Variación del síntoma al acelerar, retener o sostener carga.</li>
+              <li>Estado de crucetas, estriados, soporte central y fijaciones.</li>
+              <li>Marcas de contacto, pérdida de contrapesos o deformación del tubo.</li>
+            </ul>
+
+            <blockquote>
+              <p>La precisión no consiste en acumular mediciones, sino en relacionarlas con la condición real de trabajo.</p>
+              <cite>Criterio de diagnóstico / Tecno Cardan</cite>
+            </blockquote>
+
+            <figure>
+              <img
+                src="img/slider.jpg"
+                alt="Vista general de las instalaciones de mecanizado de Tecno Cardan"
+                width="1179"
+                height="379"
+              />
+              <figcaption>
+                La inspección dimensional se complementa con mecanizado y verificación dinámica en un entorno preparado para trabajar el conjunto completo.
+              </figcaption>
+            </figure>
+
+            <h2 id="parametros">Parámetros antes de intervenir</h2>
+            <p>
+              No existe un único valor válido para todas las transmisiones. La longitud, la velocidad de giro, el tipo de junta y las recomendaciones del fabricante definen tolerancias específicas. Aun así, una secuencia ordenada permite decidir qué medir primero y cuándo detener la unidad.
+            </p>
+
+            <ol>
+              <li><strong>Reproducir:</strong> confirmar bajo qué carga y velocidad aparece el síntoma.</li>
+              <li><strong>Inspeccionar:</strong> revisar fijaciones, holguras, fase y estado superficial.</li>
+              <li><strong>Medir:</strong> registrar ángulos, descentramiento y juego en cada articulación.</li>
+              <li><strong>Validar:</strong> contrastar los datos con la aplicación y probar luego de intervenir.</li>
+            </ol>
+
+            <div class="tc-v2-table-wrap" role="region" aria-label="Matriz orientativa de diagnóstico" tabindex="0">
+              <table>
+                <caption>Matriz orientativa / síntoma y control inicial</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Manifestación</th>
+                    <th scope="col">Control inicial</th>
+                    <th scope="col">Condición</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Vibración proporcional a la velocidad</td>
+                    <td>Balanceo, excentricidad y contrapesos</td>
+                    <td>Prioritaria</td>
+                  </tr>
+                  <tr>
+                    <td>Golpe al tomar carga</td>
+                    <td>Holguras en crucetas, estriados y apoyos</td>
+                    <td>Inmediata</td>
+                  </tr>
+                  <tr>
+                    <td>Pulsación bajo aceleración</td>
+                    <td>Ángulos de trabajo y fase de horquillas</td>
+                    <td>Medición</td>
+                  </tr>
+                  <tr>
+                    <td>Zumbido persistente</td>
+                    <td>Soporte central, rulemanes y lubricación</td>
+                    <td>Programada</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <aside class="tc-v2-callout" aria-labelledby="tc-v2-callout-title">
+              <h3 id="tc-v2-callout-title">Nota de seguridad</h3>
+              <p>
+                No operes una transmisión con fisuras, fijaciones sueltas, deformación visible o vibración severa. Los controles de esta guía son orientativos y no reemplazan las especificaciones del fabricante ni una inspección en taller.
+              </p>
+            </aside>
+
+            <h2 id="evaluacion">Una reparación con trazabilidad</h2>
+            <p>
+              Una intervención confiable deja evidencia: condición de ingreso, mediciones realizadas, componentes recuperados o sustituidos y resultado de la verificación final. Esa información permite comparar servicios, anticipar desgaste y ajustar el mantenimiento a la operación real.
+            </p>
+
+            <p>
+              En Tecno Cardan evaluamos transmisiones para transporte, maquinaria e industria. Si vas a solicitar un diagnóstico, prepará los datos de la unidad, distancia aproximada entre apoyos, régimen de trabajo y una descripción concreta del momento en que aparece la anomalía.
+            </p>
+
+            <nav class="tc-v2-actions" aria-label="Acciones relacionadas">
+              <a class="tc-v2-button" href="#">Solicitar evaluación</a>
+              <a class="tc-v2-button tc-v2-button--secondary" href="#geometria">Revisar criterios</a>
+            </nav>
+          </div>
+        </div>
+
+        <footer class="tc-v2-sheet__footer">
+          <p>Tecno Cardan / Documento de referencia</p>
+          <p>Fin del informe / TC-ING-024</p>
+        </footer>
+      </article>
+    </main>
+  </body>
+</html>

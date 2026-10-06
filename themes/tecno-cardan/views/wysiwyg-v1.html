@@ -1,0 +1,792 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Prototipo visual de contenido enriquecido para Tecno Cardan." />
+    <title>Contenido técnico | Tecno Cardan</title>
+
+    <style>
+      :root {
+        color-scheme: light;
+        --navy: #0d1b2a;
+        --navy-rgb: 13 27 42;
+        --gold-pale: #f4e3b2;
+        --gold-light: #e0b95a;
+        --gold: #c9a35c;
+        --gold-rgb: 201 163 92;
+        --white: #ffffff;
+        --slate: #5f6b7a;
+        --border: #d7dde5;
+        --surface: #ffffff;
+        --content-width: 72rem;
+        --text-width: 45rem;
+        --sans: Arial, Helvetica, sans-serif;
+        --serif: Georgia, "Times New Roman", serif;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        min-width: 20rem;
+        margin: 0;
+        color: var(--navy);
+        background: var(--navy);
+        font-family: var(--sans);
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .skip-link {
+        position: fixed;
+        z-index: 20;
+        top: 0.75rem;
+        left: 0.75rem;
+        padding: 0.75rem 1rem;
+        color: var(--navy);
+        background: var(--gold-light);
+        font-weight: 700;
+        transform: translateY(-150%);
+      }
+
+      .skip-link:focus {
+        transform: translateY(0);
+      }
+
+      .rich-content {
+        position: relative;
+        min-height: 100vh;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 88% 10%, rgba(95, 107, 122, 0.26), transparent 25rem),
+          linear-gradient(135deg, #0d1b2a 0%, #111f30 52%, #0d1b2a 100%);
+        border-top: 2px solid var(--gold);
+        border-bottom: 2px solid var(--gold);
+      }
+
+      .rich-content::before {
+        position: absolute;
+        inset: 0;
+        content: "";
+        pointer-events: none;
+        background-image:
+          linear-gradient(rgba(var(--gold-rgb), 0.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(var(--gold-rgb), 0.035) 1px, transparent 1px);
+        background-size: 3rem 3rem;
+        mask-image: linear-gradient(to bottom, #000, transparent 42rem);
+      }
+
+      .rich-content__header {
+        position: relative;
+        padding: clamp(3.5rem, 8vw, 7.5rem) 1.5rem clamp(4.5rem, 9vw, 8rem);
+        color: var(--white);
+      }
+
+      .rich-content__header-inner,
+      .rich-content__layout {
+        width: min(var(--content-width), 100%);
+        margin: 0 auto;
+      }
+
+      .rich-content__eyebrow {
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+        margin: 0 0 1.5rem;
+        color: var(--gold-light);
+        font-size: 0.75rem;
+        font-weight: 700;
+        line-height: 1.3;
+        letter-spacing: 0.19em;
+        text-transform: uppercase;
+      }
+
+      .rich-content__eyebrow::before {
+        width: 2.75rem;
+        height: 2px;
+        content: "";
+        background: var(--gold-light);
+      }
+
+      .rich-content__title {
+        max-width: 58rem;
+        margin: 0;
+        color: var(--gold-pale);
+        font-family: var(--serif);
+        font-size: clamp(2.6rem, 7vw, 5.75rem);
+        font-weight: 400;
+        line-height: 0.98;
+        letter-spacing: -0.045em;
+        text-wrap: balance;
+      }
+
+      .rich-content__title em {
+        color: var(--white);
+        font-weight: 400;
+        text-decoration: underline;
+        text-decoration-color: rgba(var(--gold-rgb), 0.65);
+        text-decoration-thickness: 0.07em;
+        text-underline-offset: 0.14em;
+      }
+
+      .rich-content__summary {
+        max-width: 43rem;
+        margin: 2rem 0 0;
+        color: #ffffff;
+        font-family: var(--serif);
+        font-size: clamp(1.15rem, 2.1vw, 1.5rem);
+        line-height: 1.6;
+      }
+
+      .rich-content__meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem 1.5rem;
+        margin: 2.25rem 0 0;
+        color: var(--gold-pale);
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .rich-content__meta span + span::before {
+        margin-right: 1.5rem;
+        color: var(--gold);
+        content: "/";
+      }
+
+      .rich-content__body {
+        position: relative;
+        background: var(--surface);
+      }
+
+      .rich-content__layout {
+        display: grid;
+        grid-template-columns: minmax(10rem, 14rem) minmax(0, var(--text-width));
+        gap: clamp(3rem, 7vw, 7rem);
+        justify-content: center;
+        padding: clamp(3.5rem, 8vw, 7.5rem) 1.5rem clamp(4.5rem, 9vw, 8rem);
+      }
+
+      .rich-content__index {
+        align-self: start;
+        padding-top: 0.4rem;
+        font-size: 0.82rem;
+      }
+
+      .rich-content__index-inner {
+        position: sticky;
+        top: 2rem;
+        padding-top: 1rem;
+        border-top: 2px solid var(--gold);
+      }
+
+      .rich-content__index-label {
+        margin: 0 0 1rem;
+        color: var(--slate);
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .rich-content__index ol {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        counter-reset: sections;
+      }
+
+      .rich-content__index li {
+        display: grid;
+        grid-template-columns: 1.8rem 1fr;
+        gap: 0.25rem;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--border);
+        counter-increment: sections;
+      }
+
+      .rich-content__index li::before {
+        color: var(--gold);
+        content: "0" counter(sections);
+        font-family: var(--serif);
+        font-style: italic;
+      }
+
+      .rich-content__index a {
+        color: var(--navy);
+        line-height: 1.35;
+        text-decoration: none;
+      }
+
+      .rich-content__index a:hover,
+      .rich-content__index a:focus-visible {
+        text-decoration: underline;
+        text-decoration-color: var(--gold);
+        text-underline-offset: 0.2em;
+      }
+
+      .wysiwyg {
+        min-width: 0;
+        font-family: var(--serif);
+        font-size: clamp(1.06rem, 1.5vw, 1.18rem);
+        line-height: 1.82;
+      }
+
+      .wysiwyg > :first-child {
+        margin-top: 0;
+      }
+
+      .wysiwyg > :last-child {
+        margin-bottom: 0;
+      }
+
+      .wysiwyg h2,
+      .wysiwyg h3 {
+        color: var(--navy);
+        font-family: var(--sans);
+        text-wrap: balance;
+      }
+
+      .wysiwyg h2 {
+        position: relative;
+        margin: 4.5rem 0 1.25rem;
+        padding-top: 1.4rem;
+        font-size: clamp(1.8rem, 4vw, 2.8rem);
+        line-height: 1.08;
+        letter-spacing: -0.035em;
+      }
+
+      .wysiwyg h2::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4rem;
+        height: 3px;
+        content: "";
+        background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      }
+
+      .wysiwyg h3 {
+        margin: 2.75rem 0 0.8rem;
+        font-size: clamp(1.2rem, 2.4vw, 1.55rem);
+        line-height: 1.2;
+      }
+
+      .wysiwyg p {
+        margin: 0 0 1.5rem;
+      }
+
+      .wysiwyg .lead {
+        margin-bottom: 2.25rem;
+        color: #26384a;
+        font-size: clamp(1.25rem, 2.3vw, 1.55rem);
+        line-height: 1.62;
+      }
+
+      .wysiwyg .lead::first-letter {
+        float: left;
+        margin: 0.1em 0.13em 0 0;
+        color: var(--gold);
+        font-family: var(--sans);
+        font-size: 4.2em;
+        font-weight: 700;
+        line-height: 0.78;
+      }
+
+      .wysiwyg a:not(.button) {
+        color: var(--navy);
+        font-weight: 700;
+        text-decoration-color: var(--gold);
+        text-decoration-thickness: 2px;
+        text-underline-offset: 0.22em;
+      }
+
+      .wysiwyg a:not(.button):hover,
+      .wysiwyg a:not(.button):focus-visible {
+        color: #5f4b1f;
+        text-decoration-color: var(--gold-light);
+      }
+
+      .wysiwyg ul,
+      .wysiwyg ol {
+        margin: 1.5rem 0 2rem;
+        padding-left: 1.4rem;
+      }
+
+      .wysiwyg li {
+        margin-bottom: 0.65rem;
+        padding-left: 0.35rem;
+      }
+
+      .wysiwyg li::marker {
+        color: var(--gold);
+        font-weight: 700;
+      }
+
+      .wysiwyg blockquote {
+        position: relative;
+        margin: 3.25rem 0;
+        padding: 2rem clamp(1.5rem, 5vw, 3.25rem) 2rem clamp(2rem, 6vw, 4.25rem);
+        color: var(--gold-pale);
+        background: var(--navy);
+        border-left: 4px solid var(--gold-light);
+        box-shadow: 0 1.25rem 2.5rem rgba(var(--navy-rgb), 0.16);
+        font-size: clamp(1.25rem, 2.7vw, 1.75rem);
+        font-style: italic;
+        line-height: 1.5;
+      }
+
+      .wysiwyg blockquote::before {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        color: rgba(var(--gold-rgb), 0.55);
+        content: "“";
+        font-size: 4rem;
+        line-height: 1;
+      }
+
+      .wysiwyg blockquote p {
+        margin: 0;
+      }
+
+      .wysiwyg blockquote cite {
+        display: block;
+        margin-top: 1rem;
+        color: var(--white);
+        font-family: var(--sans);
+        font-size: 0.72rem;
+        font-style: normal;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .wysiwyg figure {
+        margin: 3.25rem 0;
+      }
+
+      .wysiwyg figure img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 2 / 1;
+        object-fit: cover;
+        border: 1px solid rgba(var(--navy-rgb), 0.18);
+        box-shadow: 0 1.5rem 3rem rgba(var(--navy-rgb), 0.16);
+      }
+
+      .wysiwyg figcaption {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 0.75rem;
+        margin-top: 0.9rem;
+        color: var(--slate);
+        font-family: var(--sans);
+        font-size: 0.76rem;
+        line-height: 1.5;
+      }
+
+      .wysiwyg figcaption::before {
+        color: var(--gold);
+        content: "FIG. 01";
+        font-weight: 700;
+        letter-spacing: 0.08em;
+      }
+
+      .table-scroll {
+        margin: 2rem 0 3rem;
+        overflow-x: auto;
+        border: 1px solid var(--border);
+        box-shadow: 0 0.75rem 2rem rgba(var(--navy-rgb), 0.08);
+      }
+
+      .wysiwyg table {
+        width: 100%;
+        min-width: 36rem;
+        border-collapse: collapse;
+        font-family: var(--sans);
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+
+      .wysiwyg caption {
+        padding: 1rem 1.25rem;
+        color: var(--white);
+        background: var(--navy);
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-align: left;
+      }
+
+      .wysiwyg th,
+      .wysiwyg td {
+        padding: 0.9rem 1.25rem;
+        border-bottom: 1px solid var(--border);
+        text-align: left;
+      }
+
+      .wysiwyg th {
+        color: var(--navy);
+        background: var(--gold-pale);
+        font-size: 0.72rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .wysiwyg tbody tr:last-child td {
+        border-bottom: 0;
+      }
+
+      .wysiwyg tbody tr:nth-child(even) {
+        background: #f7f8fa;
+      }
+
+      .callout {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 1.25rem;
+        margin: 3rem 0;
+        padding: clamp(1.5rem, 4vw, 2.25rem);
+        background: #faf7ef;
+        border: 1px solid rgba(var(--gold-rgb), 0.6);
+        border-top: 4px solid var(--gold);
+      }
+
+      .callout__mark {
+        display: grid;
+        width: 2.75rem;
+        height: 2.75rem;
+        place-items: center;
+        color: var(--navy);
+        background: var(--gold-light);
+        border-radius: 50%;
+        font-family: var(--sans);
+        font-size: 1.2rem;
+        font-weight: 700;
+      }
+
+      .callout h3 {
+        margin: 0 0 0.45rem;
+        font-size: 1rem;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+      }
+
+      .callout p {
+        margin: 0;
+        color: #33475a;
+        font-size: 1rem;
+        line-height: 1.65;
+      }
+
+      .content-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.85rem;
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border);
+        font-family: var(--sans);
+      }
+
+      .button {
+        display: inline-flex;
+        min-height: 3.25rem;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        padding: 0.8rem 1.4rem;
+        color: var(--navy);
+        background: linear-gradient(180deg, var(--gold-light), var(--gold));
+        border: 1px solid var(--gold);
+        border-radius: 0.2rem;
+        box-shadow: 0 0.35rem 0.9rem rgba(var(--navy-rgb), 0.18);
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: transform 180ms ease, box-shadow 180ms ease;
+      }
+
+      .button::after {
+        content: "→";
+        font-size: 1.15rem;
+        transition: transform 180ms ease;
+      }
+
+      .button--secondary {
+        background: var(--white);
+        border-color: var(--navy);
+        box-shadow: none;
+      }
+
+      .button:hover,
+      .button:focus-visible {
+        transform: translateY(-2px);
+        box-shadow: 0 0.55rem 1.2rem rgba(var(--navy-rgb), 0.23);
+      }
+
+      .button:hover::after,
+      .button:focus-visible::after {
+        transform: translateX(0.2rem);
+      }
+
+      :focus-visible {
+        outline: 3px solid var(--gold-light);
+        outline-offset: 4px;
+      }
+
+      @media (max-width: 820px) {
+        .rich-content__layout {
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
+        }
+
+        .rich-content__index {
+          padding: 0;
+        }
+
+        .rich-content__index-inner {
+          position: static;
+        }
+
+        .rich-content__index ol {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 1rem;
+        }
+
+        .rich-content__index li {
+          grid-template-columns: 1fr;
+          align-content: start;
+          border-bottom: 0;
+          border-left: 1px solid var(--border);
+          padding: 0 0 0 1rem;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .rich-content__header {
+          padding-inline: 1.1rem;
+        }
+
+        .rich-content__meta {
+          display: grid;
+          gap: 0.4rem;
+        }
+
+        .rich-content__meta span + span::before {
+          display: none;
+        }
+
+        .rich-content__layout {
+          padding-inline: 1.1rem;
+        }
+
+        .rich-content__index ol {
+          grid-template-columns: 1fr;
+        }
+
+        .wysiwyg h2 {
+          margin-top: 3.5rem;
+        }
+
+        .wysiwyg .lead::first-letter {
+          font-size: 3.5em;
+        }
+
+        .wysiwyg blockquote {
+          margin-inline: -0.4rem;
+          padding-left: 2.7rem;
+        }
+
+        .wysiwyg blockquote::before {
+          left: 0.65rem;
+        }
+
+        .wysiwyg figure img {
+          aspect-ratio: 4 / 3;
+        }
+
+        .callout {
+          grid-template-columns: 1fr;
+        }
+
+        .content-actions,
+        .button {
+          width: 100%;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+    <main>
+      <section class="rich-content" aria-labelledby="article-title">
+        <header class="rich-content__header">
+          <div class="rich-content__header-inner">
+            <p class="rich-content__eyebrow">Guía técnica</p>
+            <h1 class="rich-content__title" id="article-title">
+              Cómo cuidar el cardán y <em>evitar paradas</em> imprevistas
+            </h1>
+            <p class="rich-content__summary">
+              Una transmisión bien mantenida trabaja con menos vibración, protege los componentes asociados y extiende la vida útil de todo el equipo.
+            </p>
+            <p class="rich-content__meta">
+              <span>Equipo Tecno Cardan</span>
+              <span>8 minutos de lectura</span>
+              <span>Actualizado en abril de 2026</span>
+            </p>
+          </div>
+        </header>
+
+        <div class="rich-content__body">
+          <div class="rich-content__layout">
+            <nav class="rich-content__index" aria-label="En este artículo">
+              <div class="rich-content__index-inner">
+                <p class="rich-content__index-label">En esta guía</p>
+                <ol>
+                  <li><a href="#diagnostico">Detectar el desgaste</a></li>
+                  <li><a href="#mantenimiento">Plan de mantenimiento</a></li>
+                  <li><a href="#consulta">Cuándo consultar</a></li>
+                </ol>
+              </div>
+            </nav>
+
+            <article class="wysiwyg" id="contenido">
+              <p class="lead">
+                El cardán transmite potencia mientras acompaña los movimientos entre ejes. Cuando sus ángulos, crucetas o apoyos salen de tolerancia, una pequeña vibración puede transformarse en una reparación costosa.
+              </p>
+
+              <p>
+                La prevención empieza por observar el comportamiento habitual del vehículo o de la máquina. Un sonido nuevo, una vibración que aparece a determinada velocidad o una pérdida de lubricante son señales que conviene atender. En nuestra sección de <a href="#consulta">diagnóstico especializado</a> explicamos cómo solicitar una revisión con información útil para el técnico.
+              </p>
+
+              <h2 id="diagnostico">Señales que no conviene ignorar</h2>
+              <p>
+                Ningún síntoma aislado confirma una falla, pero la combinación de varios indicios permite acotar el problema antes de desmontar el conjunto. Registrá cuándo aparece la anomalía y si cambia con la carga, la velocidad o la temperatura de trabajo.
+              </p>
+
+              <h3>Durante la conducción o la operación</h3>
+              <ul>
+                <li>Vibración que aumenta progresivamente con la velocidad.</li>
+                <li>Golpe seco al iniciar la marcha, invertir el giro o cambiar de carga.</li>
+                <li>Chirrido o zumbido continuo cerca de una cruceta o soporte.</li>
+                <li>Holgura perceptible, contrapesos ausentes o deformación visible del tubo.</li>
+              </ul>
+
+              <blockquote>
+                <p>Balancear no es esconder una vibración: es devolver al conjunto las condiciones geométricas y dinámicas necesarias para trabajar de forma segura.</p>
+                <cite>Área técnica de Tecno Cardan</cite>
+              </blockquote>
+
+              <figure>
+                <img src="img/slider.jpg" alt="Vista del taller industrial y presentación de la experiencia de Tecno Cardan" width="1179" height="379" />
+                <figcaption>
+                  La inspección en taller combina medición, experiencia y equipos adecuados para verificar cada componente del conjunto.
+                </figcaption>
+              </figure>
+
+              <h2 id="mantenimiento">Un plan simple, repetible y documentado</h2>
+              <p>
+                La frecuencia de servicio depende del fabricante, la carga y el ambiente de trabajo. Como criterio general, toda revisión debería incluir limpieza, control de fijaciones, lubricación cuando corresponda y verificación de holguras. En aplicaciones severas, reducí los intervalos sugeridos por el manual.
+              </p>
+
+              <ol>
+                <li><strong>Inspeccioná:</strong> buscá golpes, fisuras, óxido, pérdidas y marcas de contacto.</li>
+                <li><strong>Medí:</strong> comprobá holguras, descentramiento y ángulos de trabajo.</li>
+                <li><strong>Registrá:</strong> anotá fecha, kilometraje u horas, síntomas y piezas intervenidas.</li>
+                <li><strong>Verificá:</strong> realizá una prueba controlada luego de cada reparación.</li>
+              </ol>
+
+              <div class="table-scroll" role="region" aria-label="Tabla de controles orientativos" tabindex="0">
+                <table>
+                  <caption>Controles orientativos según condición de uso</caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Condición</th>
+                      <th scope="col">Qué revisar</th>
+                      <th scope="col">Prioridad</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Uso urbano o liviano</td>
+                      <td>Fijaciones, lubricación y ruidos</td>
+                      <td>Programada</td>
+                    </tr>
+                    <tr>
+                      <td>Carga pesada</td>
+                      <td>Crucetas, soportes y holguras</td>
+                      <td>Frecuente</td>
+                    </tr>
+                    <tr>
+                      <td>Golpe o vibración nueva</td>
+                      <td>Conjunto completo y balanceo</td>
+                      <td>Inmediata</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <aside class="callout" aria-labelledby="callout-title">
+                <span class="callout__mark" aria-hidden="true">!</span>
+                <div>
+                  <h3 id="callout-title">Importante</h3>
+                  <p>
+                    Estos intervalos son orientativos. Respetá siempre el manual del fabricante y detené el equipo ante vibraciones intensas, golpes o piezas sueltas.
+                  </p>
+                </div>
+              </aside>
+
+              <h2 id="consulta">Cuándo pedir una evaluación profesional</h2>
+              <p>
+                Si la vibración persiste luego de revisar neumáticos, apoyos y fijaciones, o si el conjunto recibió un impacto, conviene realizar una evaluación integral. Para agilizar el diagnóstico, indicá el tipo de unidad, la condición de carga y el momento exacto en que aparece el síntoma.
+              </p>
+
+              <p>
+                En Tecno Cardan trabajamos con reparación, fabricación a medida y balanceo de transmisiones. Nuestro objetivo no es cambiar piezas por rutina, sino encontrar la causa y proponer una solución confiable para cada aplicación.
+              </p>
+
+              <div class="content-actions" aria-label="Acciones relacionadas">
+                <a class="button" href="#">Solicitar diagnóstico</a>
+                <a class="button button--secondary" href="#mantenimiento">Repasar mantenimiento</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

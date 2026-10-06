@@ -1,0 +1,356 @@
+.tc-v2-copy {
+	box-sizing: border-box;
+	width: 100%;
+	min-width: 0;
+	margin: 0;
+	padding: clamp(2rem, 5vw, 3.25rem) clamp(1rem, calc((100vw - 68.75rem) / 2), 10.625rem);
+	color: var(--tc-color-border);
+	background: var(--tc-background-grid);
+	border-block: 1px solid rgba(var(--tc-color-gold-500-rgb), 0.65);
+	font-size: clamp(1.02rem, 1.4vw, 1.125rem);
+	line-height: 1.85;
+	overflow-wrap: anywhere;
+	counter-reset: section;
+}
+
+.tc-v2-copy > :first-child {
+	margin-top: 0;
+}
+
+.tc-v2-copy > :last-child {
+	margin-bottom: 0;
+}
+
+.tc-v2-copy p {
+	margin: 0 0 1.55rem;
+}
+
+.tc-v2-copy h1 {
+	color: var(--tc-color-gold-300);
+	font-size: clamp(2.5rem, 4.5vw, 4rem);
+}
+
+.tc-v2-copy h2,
+.tc-v2-copy h3 {
+	color: var(--tc-color-white);
+	font-family: "Arial Narrow", "Roboto Condensed", Arial, Helvetica, sans-serif;
+	line-height: 1.15;
+	text-wrap: balance;
+}
+
+.tc-v2-copy h2 {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: 1rem;
+	align-items: center;
+	margin: 5rem 0 1.5rem;
+	font-size: clamp(1.75rem, 4vw, 2.6rem);
+	letter-spacing: -0.025em;
+	text-transform: uppercase;
+	counter-increment: section;
+}
+
+.tc-v2-copy h2::before {
+	display: grid;
+	width: 2.6rem;
+	height: 2.6rem;
+	place-items: center;
+	color: var(--tc-color-primary-900);
+	content: counter(section, decimal-leading-zero);
+	background: var(--tc-color-gold-400);
+	font-family: SFMono-Regular, Consolas, "Liberation Mono", monospace;
+	font-size: 0.72rem;
+	letter-spacing: 0;
+}
+
+.tc-v2-copy h3 {
+	margin: 2.75rem 0 0.8rem;
+	color: var(--tc-color-gold-300);
+	font-size: clamp(1.15rem, 2vw, 1.4rem);
+	letter-spacing: 0.01em;
+}
+
+.tc-v2-copy a {
+	color: var(--tc-color-gold-300);
+	font-weight: 700;
+	text-decoration-color: var(--tc-color-gold-500);
+	text-decoration-thickness: 2px;
+	text-underline-offset: 0.24em;
+}
+
+.tc-v2-copy ul,
+.tc-v2-copy ol {
+	margin: 1.6rem 0 2.2rem;
+	padding-left: 1.45rem;
+}
+
+.tc-v2-copy li {
+	margin-bottom: 0.75rem;
+	padding-left: 0.45rem;
+}
+
+.tc-v2-copy li::marker {
+	color: var(--tc-color-gold-400);
+	font-family: SFMono-Regular, Consolas, "Liberation Mono", monospace;
+	font-weight: 700;
+}
+
+.tc-v2-copy strong {
+	color: var(--tc-color-white);
+}
+
+.tc-v2-copy blockquote {
+	position: relative;
+	margin: 3.5rem 0;
+	padding: 2rem 0 0 4.5rem;
+	color: var(--tc-color-gold-300);
+	border-top: 1px solid var(--tc-color-gold-500);
+	font-size: clamp(1.3rem, 2.7vw, 1.8rem);
+	font-weight: 700;
+	line-height: 1.5;
+}
+
+.tc-v2-copy blockquote::before {
+	position: absolute;
+	top: 2rem;
+	left: 0;
+	color: var(--tc-color-gold-400);
+	content: "//";
+	font-family: SFMono-Regular, Consolas, "Liberation Mono", monospace;
+	font-size: 1rem;
+	letter-spacing: -0.15em;
+}
+
+.tc-v2-copy blockquote p {
+	margin: 0;
+}
+
+.tc-v2-copy blockquote cite {
+	display: block;
+	margin-top: 1.1rem;
+	color: var(--tc-color-muted);
+	font-family: SFMono-Regular, Consolas, "Liberation Mono", monospace;
+	font-size: 0.68rem;
+	font-style: normal;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+}
+
+.tc-v2-copy figure {
+	margin: 3.75rem 0;
+	padding: 0.75rem;
+	background: rgba(var(--tc-color-primary-900-rgb), 0.7);
+	border: 1px solid rgba(var(--tc-color-gold-500-rgb), 0.35);
+}
+
+.tc-v2-copy figure img {
+	display: block;
+	width: 100%;
+	height: auto;
+	border-bottom: 1px solid rgba(var(--tc-color-gold-500-rgb), 0.5);
+}
+
+.tc-v2-copy figcaption {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: 1rem;
+	padding: 0.9rem 0.25rem 0.15rem;
+	color: var(--tc-color-muted);
+	font-family: SFMono-Regular, Consolas, "Liberation Mono", monospace;
+	font-size: 0.68rem;
+	line-height: 1.55;
+}
+
+.tc-v2-copy figcaption::before {
+	color: var(--tc-color-gold-400);
+	content: "REG. VISUAL";
+	font-weight: 700;
+	letter-spacing: 0.08em;
+}
+
+.tc-v2-copy table {
+	display: block;
+	width: 100%;
+	margin: 2.25rem 0 3.5rem;
+	overflow-x: auto;
+	border: 1px solid rgba(var(--tc-color-gold-500-rgb), 0.35);
+	border-collapse: collapse;
+	font-size: 0.9rem;
+	line-height: 1.55;
+}
+
+.tc-v2-copy caption {
+	padding: 1rem 1.2rem;
+	color: var(--tc-color-gold-300);
+	background: var(--tc-color-primary-900);
+	border-bottom: 1px solid rgba(var(--tc-color-gold-500-rgb), 0.5);
+	font-family: SFMono-Regular, Consolas, "Liberation Mono", monospace;
+	font-size: 0.68rem;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	text-align: left;
+	text-transform: uppercase;
+}
+
+.tc-v2-copy th,
+.tc-v2-copy td {
+	min-width: 10rem;
+	padding: 0.95rem 1.2rem;
+	border-right: 1px solid rgba(var(--tc-color-gold-500-rgb), 0.18);
+	border-bottom: 1px solid rgba(var(--tc-color-gold-500-rgb), 0.18);
+	text-align: left;
+	vertical-align: top;
+}
+
+.tc-v2-copy th {
+	color: var(--tc-color-gold-300);
+	background: rgba(var(--tc-color-gold-500-rgb), 0.08);
+	font-family: SFMono-Regular, Consolas, "Liberation Mono", monospace;
+	font-size: 0.67rem;
+	letter-spacing: 0.07em;
+	text-transform: uppercase;
+}
+
+.tc-v2-copy th:last-child,
+.tc-v2-copy td:last-child {
+	border-right: 0;
+}
+
+.tc-v2-copy tbody tr:last-child td {
+	border-bottom: 0;
+}
+
+.tc-v2-copy aside {
+	position: relative;
+	margin: 3.5rem 0;
+	padding: 1.75rem 2rem 1.75rem 5.25rem;
+	color: var(--tc-color-primary-900);
+	background: var(--tc-color-gold-300);
+	border-left: 0.35rem solid var(--tc-color-gold-400);
+}
+
+.tc-v2-copy aside::before {
+	position: absolute;
+	top: 1.75rem;
+	left: 1.7rem;
+	color: var(--tc-color-gold-500);
+	content: "i";
+	font-family: SFMono-Regular, Consolas, "Liberation Mono", monospace;
+	font-size: 2rem;
+	font-weight: 700;
+	line-height: 1;
+}
+
+.tc-v2-copy aside h3 {
+	margin: 0 0 0.45rem;
+	color: var(--tc-color-primary-900);
+	font-family: SFMono-Regular, Consolas, "Liberation Mono", monospace;
+	font-size: 0.76rem;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+}
+
+.tc-v2-copy aside p {
+	margin: 0;
+	font-size: 0.98rem;
+	line-height: 1.65;
+}
+
+.tc-v2-copy > p:first-child {
+	margin-bottom: 2.5rem;
+	color: var(--tc-color-white);
+	font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+	line-height: 1.55;
+}
+
+.tc-v2-copy nav {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 1rem;
+	margin-top: 3.5rem;
+	padding-top: 2rem;
+	border-top: 1px solid rgba(var(--tc-color-gold-500-rgb), 0.35);
+}
+
+.tc-v2-copy nav a {
+	display: inline-flex;
+	min-height: 3.5rem;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	padding: 0.9rem 1.2rem;
+	color: var(--tc-color-primary-900);
+	background: var(--tc-color-gold-400);
+	border: 1px solid var(--tc-color-gold-400);
+	font-family: SFMono-Regular, Consolas, "Liberation Mono", monospace;
+	font-size: 0.72rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	line-height: 1.3;
+	text-decoration: none;
+	text-transform: uppercase;
+	transition: background-color 180ms ease, transform 180ms ease;
+}
+
+.tc-v2-copy nav a::after {
+	content: "+";
+	font-size: 1.2rem;
+}
+
+.tc-v2-copy a:hover {
+	text-decoration-color: var(--tc-color-gold-300);
+}
+
+.tc-v2-copy nav a:hover,
+.tc-v2-copy nav a:focus-visible {
+	background: var(--tc-color-gold-300);
+	transform: translateY(-2px);
+}
+
+.tc-v2-copy :focus-visible {
+	outline: 3px solid var(--tc-color-gold-400);
+	outline-offset: 4px;
+}
+
+@media (min-width: 64rem) {
+
+	.tc-v2-copy {
+		padding-inline: clamp(4rem, 11.8vw, 10.625rem);
+	}
+}
+
+@media (max-width: 560px) {
+
+	.tc-v2-copy h2 {
+		grid-template-columns: 1fr;
+		margin-top: 4rem;
+	}
+
+	.tc-v2-copy blockquote {
+		padding-left: 2.5rem;
+	}
+
+	.tc-v2-copy figcaption {
+		grid-template-columns: 1fr;
+	}
+
+	.tc-v2-copy aside {
+		padding: 4.25rem 1.35rem 1.5rem;
+	}
+
+	.tc-v2-copy aside::before {
+		top: 1.35rem;
+		left: 1.35rem;
+	}
+
+	.tc-v2-copy nav {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+	.tc-v2-copy nav a {
+		transition-duration: 0.01ms !important;
+	}
+}
