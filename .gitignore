@@ -3,3 +3,4 @@
 node_modules
 /themes/tecno-cardan/node_modules
 /themes/tecno-cardan/build
+.DS_Store
