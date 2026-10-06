@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Galería de imágenes | Tecno Cardan</title>
+
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #091326;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-width: 320px;
+        margin: 0;
+        color: #f0eee8;
+        background: #091326;
+      }
+
+      .work-gallery {
+        min-height: 100vh;
+        padding: clamp(48px, 7vw, 88px) 24px clamp(56px, 8vw, 104px);
+        background:
+          radial-gradient(circle at 78% 20%, rgba(53, 77, 119, 0.3), transparent 34%),
+          radial-gradient(circle at 12% 75%, rgba(43, 55, 91, 0.24), transparent 36%),
+          linear-gradient(135deg, #091326 0%, #101b35 52%, #0b1429 100%);
+        border-top: 2px solid rgba(200, 152, 50, 0.65);
+        border-bottom: 2px solid rgba(200, 152, 50, 0.65);
+      }
+
+      .work-gallery__container {
+        width: min(1180px, 100%);
+        margin: 0 auto;
+      }
+
+      .work-gallery__header {
+        display: grid;
+        grid-template-columns: minmax(40px, 1fr) auto minmax(40px, 1fr);
+        align-items: center;
+        gap: clamp(14px, 3vw, 32px);
+        margin-bottom: 34px;
+        text-align: center;
+      }
+
+      .work-gallery__header::before,
+      .work-gallery__header::after {
+        content: "";
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(228, 189, 99, 0.7));
+        box-shadow: 0 1px rgba(255, 255, 255, 0.08);
+      }
+
+      .work-gallery__header::after {
+        background: linear-gradient(90deg, rgba(228, 189, 99, 0.7), transparent);
+      }
+
+      .work-gallery__heading {
+        margin: 0;
+        color: #f1dfb2;
+        font-size: clamp(26px, 4vw, 42px);
+        font-style: italic;
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: -0.025em;
+        text-shadow: 0 3px 12px rgba(0, 0, 0, 0.7);
+      }
+
+      .work-gallery__subtitle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        margin: 15px 0 0;
+        color: #d4d6dd;
+        font-size: clamp(14px, 1.8vw, 18px);
+        font-weight: 700;
+        letter-spacing: 0.08em;
+      }
+
+      .work-gallery__subtitle::before,
+      .work-gallery__subtitle::after {
+        content: "";
+        width: clamp(28px, 5vw, 62px);
+        height: 1px;
+        background: rgba(228, 189, 99, 0.48);
+      }
+
+      .work-gallery__grid {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        grid-auto-rows: 118px;
+        grid-auto-flow: dense;
+        gap: 14px;
+      }
+
+      .work-gallery__item {
+        --overlay-shift-x: 36%;
+
+        position: relative;
+        grid-column: span 4;
+        grid-row: span 2;
+        min-height: 0;
+        margin: 0;
+        overflow: hidden;
+        background: #101b35;
+        border: 1px solid rgba(228, 189, 99, 0.38);
+        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.32);
+        isolation: isolate;
+      }
+
+      .work-gallery__item:nth-child(1) {
+        grid-column: span 7;
+        grid-row: span 3;
+      }
+
+      .work-gallery__item:nth-child(2) {
+        grid-column: span 5;
+        grid-row: span 2;
+      }
+
+      .work-gallery__item:nth-child(3) {
+        grid-column: span 5;
+        grid-row: span 3;
+      }
+
+      .work-gallery__item:nth-child(4) {
+        grid-column: span 4;
+        grid-row: span 2;
+      }
+
+      .work-gallery__item:nth-child(5) {
+        grid-column: span 3;
+        grid-row: span 2;
+      }
+
+      .work-gallery__item:nth-child(6) {
+        grid-column: span 7;
+        grid-row: span 2;
+      }
+
+      .work-gallery__item:nth-child(7) {
+        grid-column: span 5;
+        grid-row: span 2;
+      }
+
+      .work-gallery__image {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        filter: saturate(0.78) contrast(1.08);
+        transition: transform 450ms ease, filter 450ms ease;
+      }
+
+      .work-gallery__item::after {
+        content: "";
+        position: absolute;
+        z-index: 1;
+        inset: 0;
+        background: linear-gradient(180deg, transparent 42%, rgba(4, 9, 19, 0.92) 100%);
+        pointer-events: none;
+        transition: opacity 420ms ease, transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .work-gallery__caption {
+        position: absolute;
+        z-index: 2;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        padding: 40px clamp(16px, 2.4vw, 26px) clamp(16px, 2.2vw, 24px);
+        color: #f0eee8;
+        font-size: clamp(14px, 1.5vw, 17px);
+        font-weight: 700;
+        line-height: 1.35;
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.95);
+        transition: opacity 300ms ease, transform 480ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .work-gallery__caption::before {
+        content: "";
+        display: block;
+        width: 34px;
+        height: 2px;
+        margin-bottom: 9px;
+        background: #e4bd63;
+      }
+
+      .work-gallery__item:nth-child(even) {
+        --overlay-shift-x: -36%;
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        .work-gallery__item:hover::after {
+          opacity: 0;
+          transform: translate(var(--overlay-shift-x), 58%);
+        }
+
+        .work-gallery__item:hover .work-gallery__caption {
+          opacity: 0;
+          transform: translate(var(--overlay-shift-x), 62%);
+        }
+
+        .work-gallery__item:hover .work-gallery__image {
+          transform: scale(1.035);
+          filter: saturate(0.95) contrast(1.08);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .work-gallery__image,
+        .work-gallery__item::after,
+        .work-gallery__caption {
+          transition: none;
+        }
+
+        .work-gallery__item:hover::after,
+        .work-gallery__item:hover .work-gallery__caption,
+        .work-gallery__item:hover .work-gallery__image {
+          transform: none;
+        }
+      }
+
+      @media (max-width: 820px) {
+        .work-gallery {
+          padding-inline: 18px;
+        }
+
+        .work-gallery__grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          grid-auto-rows: 190px;
+        }
+
+        .work-gallery__item,
+        .work-gallery__item:nth-child(n) {
+          grid-column: span 1;
+          grid-row: span 1;
+        }
+
+        .work-gallery__item:nth-child(1),
+        .work-gallery__item:nth-child(4),
+        .work-gallery__item:nth-child(6) {
+          grid-row: span 2;
+        }
+
+        .work-gallery__item:nth-child(3) {
+          grid-column: span 2;
+        }
+      }
+
+      @media (max-width: 540px) {
+        .work-gallery {
+          padding: 42px 14px 56px;
+        }
+
+        .work-gallery__header {
+          grid-template-columns: 1fr;
+          margin-bottom: 26px;
+        }
+
+        .work-gallery__header::before,
+        .work-gallery__header::after {
+          display: none;
+        }
+
+        .work-gallery__grid {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        .work-gallery__item,
+        .work-gallery__item:nth-child(n) {
+          width: 100%;
+          min-height: 240px;
+        }
+
+        .work-gallery__item:nth-child(1),
+        .work-gallery__item:nth-child(4),
+        .work-gallery__item:nth-child(6) {
+          min-height: 330px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <section class="work-gallery" aria-labelledby="work-gallery-title">
+        <div class="work-gallery__container">
+          <header class="work-gallery__header">
+            <div>
+              <h1 class="work-gallery__heading" id="work-gallery-title">NUESTROS TRABAJOS</h1>
+              <p class="work-gallery__subtitle">GALERÍA DE IMÁGENES</p>
+            </div>
+          </header>
+
+          <div class="work-gallery__grid">
+            <figure class="work-gallery__item">
+              <img class="work-gallery__image" src="https://placehold.co/1200x820/293241/e4bd63?text=Cardan+industrial" alt="Cardan industrial restaurado sobre una mesa de trabajo" />
+              <figcaption class="work-gallery__caption">Restauración integral de cardan industrial</figcaption>
+            </figure>
+
+            <figure class="work-gallery__item">
+              <img class="work-gallery__image" src="https://placehold.co/900x560/364456/f1dfb2?text=Mecanizado" alt="Técnico mecanizando un eje de transmisión en el taller" />
+              <figcaption class="work-gallery__caption">Mecanizado de precisión para cada aplicación</figcaption>
+            </figure>
+
+            <figure class="work-gallery__item">
+              <img class="work-gallery__image" src="https://placehold.co/900x900/182536/e4bd63?text=Transmision+pesada" alt="Sistema de transmisión preparado para un vehículo pesado" />
+              <figcaption class="work-gallery__caption">Soluciones para transporte pesado</figcaption>
+            </figure>
+
+            <figure class="work-gallery__item">
+              <img class="work-gallery__image" src="https://placehold.co/760x560/44515d/f1dfb2?text=Balanceo" alt="Eje cardánico colocado en una máquina de balanceo" />
+              <figcaption class="work-gallery__caption">Balanceo dinámico y control de vibraciones</figcaption>
+            </figure>
+
+            <figure class="work-gallery__item">
+              <img class="work-gallery__image" src="https://placehold.co/620x720/202d3d/e4bd63?text=Cruceta" alt="Detalle de una cruceta y sus componentes metálicos" />
+              <figcaption class="work-gallery__caption">Recambio de crucetas y componentes</figcaption>
+            </figure>
+
+            <figure class="work-gallery__item">
+              <img class="work-gallery__image" src="https://placehold.co/1200x600/354250/f1dfb2?text=Fabricacion+a+medida" alt="Conjunto de cardanes fabricados a medida" />
+              <figcaption class="work-gallery__caption">Fabricación a medida según especificaciones</figcaption>
+            </figure>
+
+            <figure class="work-gallery__item">
+              <img class="work-gallery__image" src="https://placehold.co/900x600/1c2939/e4bd63?text=Control+final" alt="Técnico realizando el control final de una transmisión" />
+              <figcaption class="work-gallery__caption">Verificación final antes de la entrega</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
