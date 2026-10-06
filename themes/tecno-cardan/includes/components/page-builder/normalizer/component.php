@@ -19,5 +19,9 @@ function tc_normalize_page_builder_component($component, $page_context = array()
     return tc_normalize_experience_carousel_section($component);
   }
 
+  if ($layout === 'grid') {
+    return tc_normalize_grid_section($component);
+  }
+
   return array();
 }
