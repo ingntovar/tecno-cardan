@@ -2,12 +2,11 @@
 
 function tc_fallback_menu() {
   echo '<ul class="tc-fallback-menu">';
-  wp_list_pages(
-    array(
-      'title_li' => '',
-      'depth' => 1,
-    )
-  );
+  echo '<li><a href="' . esc_url(home_url('/')) . '">Inicio</a></li>';
+  echo '<li><a href="' . esc_url(home_url('/#servicios')) . '">Servicios</a></li>';
+  echo '<li><a href="' . esc_url(home_url('/#nosotros')) . '">Nosotros</a></li>';
+  echo '<li><a href="' . esc_url(home_url('/#trabajos')) . '">Trabajos</a></li>';
+  echo '<li><a href="' . esc_url(home_url('/#contacto')) . '">Contacto</a></li>';
   echo '</ul>';
 }
 

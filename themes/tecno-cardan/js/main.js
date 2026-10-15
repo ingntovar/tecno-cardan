@@ -7,9 +7,14 @@ import 'swiper/css/a11y';
 import 'swiper/css/pagination';
 
 import { ExperienceCarousel } from './components/experience-carousel.js';
+import { Navbar } from './components/navbar.js';
 
 document.addEventListener( 'DOMContentLoaded', () => {
 	document
 		.querySelectorAll( '[data-js-experience-carousel]' )
 		.forEach( ( root ) => new ExperienceCarousel( root ).init() );
+
+	document
+		.querySelectorAll( '[data-js-navbar]' )
+		.forEach( ( root ) => new Navbar( root ).init() );
 } );

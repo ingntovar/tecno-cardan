@@ -7,6 +7,7 @@
         'container' => false,
         'menu_class' => 'tc-nav-list',
         'fallback_cb' => 'tc_fallback_menu',
+        'depth' => 1,
       )
     );
     ?>

@@ -6,6 +6,8 @@ if ($page_id <= 0) {
   $page_id = (int) get_the_ID();
 }
 
+tc_render_component('navbar');
+
 $sections = tc_get_page_builder_sections($page_id);
 
 foreach ($sections as $section) {
@@ -22,4 +24,3 @@ foreach ($sections as $section) {
 
   tc_render_component($component_name, $component_args);
 }
-

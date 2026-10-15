@@ -12,11 +12,3 @@ $charset = get_bloginfo('charset');
 </head>
 <body <?php body_class('tc-site-shell'); ?>>
 <?php wp_body_open(); ?>
-<header class="tc-site-header">
-  <div class="tc-container tc-site-branding">
-    <div>
-      <a class="tc-site-title" href="<?php echo esc_url(home_url('/')); ?>"><?php bloginfo('name'); ?></a>
-      <p class="tc-site-description"><?php bloginfo('description'); ?></p>
-    </div>
-  </div>
-</header>
