@@ -19,6 +19,7 @@ function tc_setup_theme() {
   register_nav_menus(
     array(
       'primary' => __('Primary Navigation', 'tecno-cardan'),
+      'footer' => __('Footer Navigation', 'tecno-cardan'),
     )
   );
 }
