@@ -27,5 +27,9 @@ function tc_normalize_page_builder_component($component, $page_context = array()
     return tc_normalize_wysiwyg_section($component);
   }
 
+  if ($layout === 'products') {
+    return tc_normalize_products_section($component);
+  }
+
   return array();
 }
