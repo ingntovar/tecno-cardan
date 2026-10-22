@@ -2,7 +2,8 @@
 
 $site_name = get_bloginfo('name');
 $home_url = home_url('/');
-$whatsapp_url = 'https://wa.me/573001234567';
+$organization_phone = tc_get_organization_phone();
+$whatsapp_url = $organization_phone['whatsapp_url'];
 ?>
 <header class="tc-navbar" data-js-navbar>
   <div class="tc-navbar__top">
@@ -25,7 +26,7 @@ $whatsapp_url = 'https://wa.me/573001234567';
         </span>
         <span>
           <span class="tc-navbar__whatsapp-label">COTIZA POR WHATSAPP</span>
-          <span class="tc-navbar__whatsapp-number">+57 300 123 4567</span>
+          <span class="tc-navbar__whatsapp-number"><?php echo esc_html($organization_phone['display']); ?></span>
         </span>
       </a>
 

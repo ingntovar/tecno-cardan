@@ -319,6 +319,38 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_69f0c00300001": {
+                    "key": "layout_69f0c00300001",
+                    "name": "contact",
+                    "label": "Contact",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_69f0c00300002",
+                            "label": "Contact",
+                            "name": "contact",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "Phone and business hours are managed in Site Settings.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_69f0c00200001"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             },
             "min": "",
@@ -347,5 +379,5 @@
     "description": "",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1792110349
+    "modified": 1792651353
 }

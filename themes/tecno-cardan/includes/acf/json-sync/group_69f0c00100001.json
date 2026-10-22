@@ -1,0 +1,800 @@
+{
+    "key": "group_69f0c00100001",
+    "title": "Site Settings: Contact",
+    "fields": [
+        {
+            "key": "field_69f0c00100002",
+            "label": "Organization Phone",
+            "name": "organization_phone",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Canonical phone used for display, telephone links, and WhatsApp links.",
+            "required": 1,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "+57 300 123 4567",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_69f0c00100003",
+            "label": "Business Hours",
+            "name": "business_hours",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "Configure the regular weekly schedule. Holiday and date exceptions are not supported.",
+            "required": 1,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_69f0c00100100",
+                    "label": "Monday",
+                    "name": "monday",
+                    "aria-label": "",
+                    "type": "group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_69f0c00100101",
+                            "label": "Open",
+                            "name": "is_open",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "25",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": 1,
+                            "ui": 1,
+                            "message": "",
+                            "ui_on_text": "",
+                            "ui_off_text": ""
+                        },
+                        {
+                            "key": "field_69f0c00100102",
+                            "label": "Shifts",
+                            "name": "shifts",
+                            "aria-label": "",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_69f0c00100101",
+                                        "operator": "==",
+                                        "value": "1"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "75",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "table",
+                            "min": 1,
+                            "button_label": "Add Shift",
+                            "max": 0,
+                            "rows_per_page": 20,
+                            "collapsed": "",
+                            "sub_fields": [
+                                {
+                                    "key": "field_69f0c00100103",
+                                    "label": "Opens At",
+                                    "name": "opens_at",
+                                    "aria-label": "",
+                                    "type": "time_picker",
+                                    "instructions": "",
+                                    "required": 1,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "display_format": "g:i a",
+                                    "return_format": "H:i",
+                                    "parent_repeater": "field_69f0c00100102"
+                                },
+                                {
+                                    "key": "field_69f0c00100104",
+                                    "label": "Closes At",
+                                    "name": "closes_at",
+                                    "aria-label": "",
+                                    "type": "time_picker",
+                                    "instructions": "",
+                                    "required": 1,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "display_format": "g:i a",
+                                    "return_format": "H:i",
+                                    "parent_repeater": "field_69f0c00100102"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "key": "field_69f0c00100200",
+                    "label": "Tuesday",
+                    "name": "tuesday",
+                    "aria-label": "",
+                    "type": "group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_69f0c00100201",
+                            "label": "Open",
+                            "name": "is_open",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "25",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": 1,
+                            "ui": 1,
+                            "message": "",
+                            "ui_on_text": "",
+                            "ui_off_text": ""
+                        },
+                        {
+                            "key": "field_69f0c00100202",
+                            "label": "Shifts",
+                            "name": "shifts",
+                            "aria-label": "",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_69f0c00100201",
+                                        "operator": "==",
+                                        "value": "1"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "75",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "table",
+                            "min": 1,
+                            "button_label": "Add Shift",
+                            "max": 0,
+                            "rows_per_page": 20,
+                            "collapsed": "",
+                            "sub_fields": [
+                                {
+                                    "key": "field_69f0c00100203",
+                                    "label": "Opens At",
+                                    "name": "opens_at",
+                                    "aria-label": "",
+                                    "type": "time_picker",
+                                    "instructions": "",
+                                    "required": 1,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "display_format": "g:i a",
+                                    "return_format": "H:i",
+                                    "parent_repeater": "field_69f0c00100202"
+                                },
+                                {
+                                    "key": "field_69f0c00100204",
+                                    "label": "Closes At",
+                                    "name": "closes_at",
+                                    "aria-label": "",
+                                    "type": "time_picker",
+                                    "instructions": "",
+                                    "required": 1,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "display_format": "g:i a",
+                                    "return_format": "H:i",
+                                    "parent_repeater": "field_69f0c00100202"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "key": "field_69f0c00100300",
+                    "label": "Wednesday",
+                    "name": "wednesday",
+                    "aria-label": "",
+                    "type": "group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_69f0c00100301",
+                            "label": "Open",
+                            "name": "is_open",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "25",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": 1,
+                            "ui": 1,
+                            "message": "",
+                            "ui_on_text": "",
+                            "ui_off_text": ""
+                        },
+                        {
+                            "key": "field_69f0c00100302",
+                            "label": "Shifts",
+                            "name": "shifts",
+                            "aria-label": "",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_69f0c00100301",
+                                        "operator": "==",
+                                        "value": "1"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "75",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "table",
+                            "min": 1,
+                            "button_label": "Add Shift",
+                            "max": 0,
+                            "rows_per_page": 20,
+                            "collapsed": "",
+                            "sub_fields": [
+                                {
+                                    "key": "field_69f0c00100303",
+                                    "label": "Opens At",
+                                    "name": "opens_at",
+                                    "aria-label": "",
+                                    "type": "time_picker",
+                                    "instructions": "",
+                                    "required": 1,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "display_format": "g:i a",
+                                    "return_format": "H:i",
+                                    "parent_repeater": "field_69f0c00100302"
+                                },
+                                {
+                                    "key": "field_69f0c00100304",
+                                    "label": "Closes At",
+                                    "name": "closes_at",
+                                    "aria-label": "",
+                                    "type": "time_picker",
+                                    "instructions": "",
+                                    "required": 1,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "display_format": "g:i a",
+                                    "return_format": "H:i",
+                                    "parent_repeater": "field_69f0c00100302"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "key": "field_69f0c00100400",
+                    "label": "Thursday",
+                    "name": "thursday",
+                    "aria-label": "",
+                    "type": "group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_69f0c00100401",
+                            "label": "Open",
+                            "name": "is_open",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "25",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": 1,
+                            "ui": 1,
+                            "message": "",
+                            "ui_on_text": "",
+                            "ui_off_text": ""
+                        },
+                        {
+                            "key": "field_69f0c00100402",
+                            "label": "Shifts",
+                            "name": "shifts",
+                            "aria-label": "",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_69f0c00100401",
+                                        "operator": "==",
+                                        "value": "1"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "75",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "table",
+                            "min": 1,
+                            "button_label": "Add Shift",
+                            "max": 0,
+                            "rows_per_page": 20,
+                            "collapsed": "",
+                            "sub_fields": [
+                                {
+                                    "key": "field_69f0c00100403",
+                                    "label": "Opens At",
+                                    "name": "opens_at",
+                                    "aria-label": "",
+                                    "type": "time_picker",
+                                    "instructions": "",
+                                    "required": 1,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "display_format": "g:i a",
+                                    "return_format": "H:i",
+                                    "parent_repeater": "field_69f0c00100402"
+                                },
+                                {
+                                    "key": "field_69f0c00100404",
+                                    "label": "Closes At",
+                                    "name": "closes_at",
+                                    "aria-label": "",
+                                    "type": "time_picker",
+                                    "instructions": "",
+                                    "required": 1,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "display_format": "g:i a",
+                                    "return_format": "H:i",
+                                    "parent_repeater": "field_69f0c00100402"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "key": "field_69f0c00100500",
+                    "label": "Friday",
+                    "name": "friday",
+                    "aria-label": "",
+                    "type": "group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_69f0c00100501",
+                            "label": "Open",
+                            "name": "is_open",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "25",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": 1,
+                            "ui": 1,
+                            "message": "",
+                            "ui_on_text": "",
+                            "ui_off_text": ""
+                        },
+                        {
+                            "key": "field_69f0c00100502",
+                            "label": "Shifts",
+                            "name": "shifts",
+                            "aria-label": "",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_69f0c00100501",
+                                        "operator": "==",
+                                        "value": "1"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "75",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "table",
+                            "min": 1,
+                            "button_label": "Add Shift",
+                            "max": 0,
+                            "rows_per_page": 20,
+                            "collapsed": "",
+                            "sub_fields": [
+                                {
+                                    "key": "field_69f0c00100503",
+                                    "label": "Opens At",
+                                    "name": "opens_at",
+                                    "aria-label": "",
+                                    "type": "time_picker",
+                                    "instructions": "",
+                                    "required": 1,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "display_format": "g:i a",
+                                    "return_format": "H:i",
+                                    "parent_repeater": "field_69f0c00100502"
+                                },
+                                {
+                                    "key": "field_69f0c00100504",
+                                    "label": "Closes At",
+                                    "name": "closes_at",
+                                    "aria-label": "",
+                                    "type": "time_picker",
+                                    "instructions": "",
+                                    "required": 1,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "display_format": "g:i a",
+                                    "return_format": "H:i",
+                                    "parent_repeater": "field_69f0c00100502"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "key": "field_69f0c00100600",
+                    "label": "Saturday",
+                    "name": "saturday",
+                    "aria-label": "",
+                    "type": "group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_69f0c00100601",
+                            "label": "Open",
+                            "name": "is_open",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "25",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": 1,
+                            "ui": 1,
+                            "message": "",
+                            "ui_on_text": "",
+                            "ui_off_text": ""
+                        },
+                        {
+                            "key": "field_69f0c00100602",
+                            "label": "Shifts",
+                            "name": "shifts",
+                            "aria-label": "",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_69f0c00100601",
+                                        "operator": "==",
+                                        "value": "1"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "75",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "table",
+                            "min": 1,
+                            "button_label": "Add Shift",
+                            "max": 0,
+                            "rows_per_page": 20,
+                            "collapsed": "",
+                            "sub_fields": [
+                                {
+                                    "key": "field_69f0c00100603",
+                                    "label": "Opens At",
+                                    "name": "opens_at",
+                                    "aria-label": "",
+                                    "type": "time_picker",
+                                    "instructions": "",
+                                    "required": 1,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "display_format": "g:i a",
+                                    "return_format": "H:i",
+                                    "parent_repeater": "field_69f0c00100602"
+                                },
+                                {
+                                    "key": "field_69f0c00100604",
+                                    "label": "Closes At",
+                                    "name": "closes_at",
+                                    "aria-label": "",
+                                    "type": "time_picker",
+                                    "instructions": "",
+                                    "required": 1,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "display_format": "g:i a",
+                                    "return_format": "H:i",
+                                    "parent_repeater": "field_69f0c00100602"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "key": "field_69f0c00100700",
+                    "label": "Sunday",
+                    "name": "sunday",
+                    "aria-label": "",
+                    "type": "group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_69f0c00100701",
+                            "label": "Open",
+                            "name": "is_open",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "25",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": 0,
+                            "ui": 1,
+                            "message": "",
+                            "ui_on_text": "",
+                            "ui_off_text": ""
+                        },
+                        {
+                            "key": "field_69f0c00100702",
+                            "label": "Shifts",
+                            "name": "shifts",
+                            "aria-label": "",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_69f0c00100701",
+                                        "operator": "==",
+                                        "value": "1"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "75",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "table",
+                            "pagination": 0,
+                            "min": 1,
+                            "max": 0,
+                            "collapsed": "",
+                            "button_label": "Add Shift",
+                            "rows_per_page": 20,
+                            "sub_fields": [
+                                {
+                                    "key": "field_69f0c00100703",
+                                    "label": "Opens At",
+                                    "name": "opens_at",
+                                    "aria-label": "",
+                                    "type": "time_picker",
+                                    "instructions": "",
+                                    "required": 1,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "display_format": "g:i a",
+                                    "return_format": "H:i",
+                                    "parent_repeater": "field_69f0c00100702"
+                                },
+                                {
+                                    "key": "field_69f0c00100704",
+                                    "label": "Closes At",
+                                    "name": "closes_at",
+                                    "aria-label": "",
+                                    "type": "time_picker",
+                                    "instructions": "",
+                                    "required": 1,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "display_format": "g:i a",
+                                    "return_format": "H:i",
+                                    "parent_repeater": "field_69f0c00100702"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "tc-site-settings"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Canonical organization contact data and regular weekly business hours.",
+    "show_in_rest": 0,
+    "display_title": "",
+    "modified": 1792652902
+}

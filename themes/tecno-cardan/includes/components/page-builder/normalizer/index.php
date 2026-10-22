@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/cta.php';
+require_once __DIR__ . '/contact.php';
 require_once __DIR__ . '/experience-carousel.php';
 require_once __DIR__ . '/grid.php';
 require_once __DIR__ . '/hero.php';

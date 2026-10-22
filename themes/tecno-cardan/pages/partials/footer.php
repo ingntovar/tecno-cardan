@@ -1,3 +1,4 @@
+<?php $organization_phone = tc_get_organization_phone(); ?>
 <footer class="tc-site-footer">
   <section class="tc-site-footer__cta" aria-labelledby="tc-footer-cta-title">
     <div class="tc-container tc-site-footer__cta-inner">
@@ -12,9 +13,9 @@
         </p>
       </div>
 
-      <a class="tc-site-footer__cta-link" href="#contacto">
+      <a class="tc-site-footer__cta-link" href="<?php echo esc_url($organization_phone['whatsapp_url']); ?>" target="_blank" rel="noopener noreferrer">
         <span class="tc-site-footer__cta-link-label">COTIZA POR WHATSAPP</span>
-        <span class="tc-site-footer__cta-link-value">+57 300 123 4567</span>
+        <span class="tc-site-footer__cta-link-value"><?php echo esc_html($organization_phone['display']); ?></span>
       </a>
     </div>
   </section>
@@ -52,8 +53,8 @@
       <div id="contacto">
         <h2 class="tc-site-footer__heading">Contacto</h2>
         <address class="tc-site-footer__contact">
-          <a href="#contacto">WhatsApp: +57 300 123 4567</a>
-          <a href="#contacto">Teléfono: +57 300 123 4567</a>
+          <a href="<?php echo esc_url($organization_phone['whatsapp_url']); ?>" target="_blank" rel="noopener noreferrer">WhatsApp: <?php echo esc_html($organization_phone['display']); ?></a>
+          <a href="<?php echo esc_url($organization_phone['tel_url']); ?>">Teléfono: <?php echo esc_html($organization_phone['display']); ?></a>
           <a href="#contacto">Correo: contacto@tecnocardan.com</a>
           <span>Bogotá, Colombia</span>
         </address>
