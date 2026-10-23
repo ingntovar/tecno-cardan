@@ -89,8 +89,8 @@ If the proposed integration cannot satisfy these rules, stop the implementation 
 - Return the stable shape `array('component' => '...', 'args' => array(...))`.
 - Render presentational markup in `pages/components/{component_slug}.php` using normalized `$args` only.
 - When `target_page` is a concrete identifier, integrate the component into that page/template instance only. When it is `"all"`, register the component as available in the shared Page Builder without directly placing an instance into every template. In either case, do not alter unrelated pages or silently add the component to a global fallback.
-- Keep `pages/frontpage.php` and entry templates thin. Use the existing page assembler and builder boundaries.
-- **Never call `get_field()` from `pages/components/*.php`, `pages/frontpage.php`, or other presentational templates.**
+- Keep `pages/page-builder.php` and entry templates thin. Use the existing page assembler and builder boundaries.
+- **Never call `get_field()` from `pages/components/*.php`, `pages/page-builder.php`, or other presentational templates.**
 
 ### Markup, security, and accessibility
 

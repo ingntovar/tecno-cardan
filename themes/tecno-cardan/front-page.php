@@ -1,3 +1,3 @@
 <?php
 
-tc_assemble_template('frontpage', true);
+tc_assemble_template('page-builder');

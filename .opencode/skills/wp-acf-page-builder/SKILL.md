@@ -4,7 +4,7 @@ description: >
   Documenta como trabajar con el page builder basado en ACF del theme La Fonda,
   incluyendo render, lectura de fields, normalizacion y extension de layouts.
   Trigger: cuando un agente necesite editar o extender el builder, ACF de paginas,
-  normalizers o componentes renderizados desde pages/frontpage.php.
+  normalizers o componentes renderizados desde pages/page-builder.php.
 license: Apache-2.0
 metadata:
   author: gentleman-programming
@@ -17,7 +17,7 @@ metadata:
 
 - Cuando toques `includes/components/page-builder/`.
 - Cuando agregues o cambies layouts del flexible content `components` en ACF.
-- Cuando necesites entender como una pagina normal termina renderizando componentes de `pages/components/`.
+- Cuando necesites entender como una pagina normal termina renderizando componentes desde `pages/page-builder.php`.
 - Cuando trabajes con `heading`, `copy`, `include_page_data` o cualquier dato de contexto de pagina.
 
 ## Critical Patterns
@@ -36,10 +36,10 @@ metadata:
 
 ### Render flow
 
-1. `front-page.php` y `index.php` enrutan paginas hacia `lff_assemble_template('frontpage')`.
-2. `lff_assemble_template()` carga header, nav, `pages/frontpage.php` y footer.
-3. `pages/frontpage.php` obtiene el `post_id` actual y llama `lff_get_page_builder_sections($page_id)`.
-4. `lff_get_page_builder_sections()` lee el flexible content `components`, arma `page_context` y normaliza cada layout.
+1. `front-page.php` y `page.php` enrutan paginas hacia `tc_assemble_template('page-builder')`; `index.php` conserva el fallback general de WordPress por separado.
+2. `tc_assemble_template()` carga el header, renderiza una vez el navbar global canonico desde `pages/components/navbar.php`, envuelve la vista solicitada en `<main>` y carga el footer.
+3. `pages/page-builder.php` obtiene el `post_id` actual y llama `tc_get_page_builder_sections($page_id)`.
+4. `tc_get_page_builder_sections()` lee el flexible content `components`, arma `page_context` y normaliza cada layout.
 5. Cada normalizer devuelve una seccion con esta forma:
 
 ```php
@@ -49,8 +49,8 @@ array(
 )
 ```
 
-6. `pages/frontpage.php` recorre las secciones y llama `lff_include_component($section['component'], $section['args'])`.
-7. `lff_include_component()` incluye `pages/components/{component}.php`, donde solo debe existir markup presentacional y defaults ligeros.
+6. `pages/page-builder.php` recorre las secciones y llama `tc_render_component($section['component'], $section['args'])`; si no hay secciones validas, consume el loop una vez y renderiza `the_content()`.
+7. `tc_render_component()` incluye `pages/components/{component}.php`, donde solo debe existir markup presentacional y defaults ligeros.
 
 ### Folder architecture
 
@@ -67,7 +67,7 @@ includes/
         component.php        # Router por acf_fc_layout
         *.php                # Normalizers por responsabilidad
 pages/
-  frontpage.php              # Consume el builder y renderiza secciones
+  page-builder.php           # Consume el builder o renderiza the_content()
   components/
     *.php                    # Presentational components
 ```
@@ -75,7 +75,7 @@ pages/
 ### Read fields in the right layer
 
 - Lee `get_field()` en el builder o en helpers de normalizacion, no dentro de `pages/components/*.php`.
-- Usa `lff_get_page_builder_sections()` como frontera entre datos ACF y UI renderizada.
+- Usa `tc_get_page_builder_sections()` como frontera entre datos ACF y UI renderizada.
 - `pages/components/*.php` debe recibir datos ya listos para pintar via `$args`.
 - Si un component necesita estructura extra, agrega esa transformacion en un normalizer, no en el template.
 - Mantene chequeos defensivos como `function_exists('get_field')`, `is_array()` y `empty()` en la capa de builder/normalizer.
@@ -98,7 +98,7 @@ $page_context = array(
 
 ### Page context conventions
 
-- El contexto de pagina comun vive en `lff_get_page_builder_context($post_id)`.
+- El contexto de pagina comun vive en `tc_get_page_builder_context($post_id)`.
 - Hoy el contexto incluye:
   - `include_page_data`
   - `heading`
@@ -180,8 +180,8 @@ if ($layout === 'quote') {
 
 ## Guardrails
 
-- No mezcles `get_field()` directo en `pages/frontpage.php` o en `pages/components/` salvo casos excepcionales ya existentes y justificados.
-- No metas logica de layout nueva directo en `pages/frontpage.php`; ahi solo se consume la salida del builder o el fallback legacy.
+- No mezcles `get_field()` directo en `pages/page-builder.php` o en `pages/components/` salvo casos excepcionales ya existentes y justificados.
+- No metas logica de layout nueva directo en `pages/page-builder.php`; ahi solo se consume la salida del builder o el fallback de contenido.
 - No conviertas `component.php` en un switch gigante con logica embebida; solo debe enrutar a normalizers dedicados.
 - No dupliques estructuras de cards/media si ya existe un normalizer de apoyo.
 - Si un layout empieza a crecer, separa subnormalizers por responsabilidad antes de tocar el template.
@@ -192,8 +192,8 @@ if ($layout === 'quote') {
 - `includes/components/page-builder/builder.php` - obtiene `components` y `page_context`.
 - `includes/components/page-builder/normalizer/component.php` - resuelve el layout actual.
 - `includes/components/page-builder/normalizer/index.php` - barrel de normalizers.
-- `pages/frontpage.php` - integra builder + fallback + render.
-- `includes/utils.php` - `lff_include_component()` conecta nombres de component con `pages/components/`.
+- `pages/page-builder.php` - integra builder + fallback de contenido + render.
+- `includes/utils.php` - `tc_render_component()` conecta nombres de component con `pages/components/`.
 - `includes/acf/json-sync/group_69c7f716b76a7.json` - group actual del flexible content `components`.
 
 ## Commands
@@ -201,5 +201,5 @@ if ($layout === 'quote') {
 ```bash
 php -l "includes/components/page-builder/builder.php"
 php -l "includes/components/page-builder/normalizer/component.php"
-php -l "pages/frontpage.php"
+php -l "pages/page-builder.php"
 ```

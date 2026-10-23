@@ -31,7 +31,7 @@ Follow this skill whenever you add or modify theme code.
 Pages must be assembled through a single function:
 
 ```php
-function lff_assemble_template($pagename, $exclude_nav = false) {
+function tc_assemble_template($pagename) {
   global $theme_dir;
   global $theme_dir_uri;
 
@@ -42,11 +42,12 @@ function lff_assemble_template($pagename, $exclude_nav = false) {
 
   include "$theme_dir/pages/partials/header.php";
 
-  if (!$exclude_nav) {
-    include "$theme_dir/pages/partials/nav.php";
-  }
+  tc_render_component('navbar');
 
+  echo '<main class="tc-main">';
   include "$theme_dir/pages/$pagename.php";
+  echo '</main>';
+
   include "$theme_dir/pages/partials/footer.php";
 }
 ````
@@ -54,8 +55,10 @@ function lff_assemble_template($pagename, $exclude_nav = false) {
 Rules:
 
 * Do not manually compose full pages in random template files.
-* Do not duplicate header, nav, or footer logic.
-* Always route page composition through `lff_assemble_template()`.
+* Do not duplicate header, navbar, or footer logic.
+* The assembler owns the canonical global navbar and renders `pages/components/navbar.php` exactly once after the document header and before `<main>`.
+* Do not render the navbar from entry templates, page views, or individual components.
+* Always route page composition through `tc_assemble_template()`.
 
 ---
 
@@ -229,8 +232,8 @@ Entry template files must be minimal.
 Example:
 
 ```php
-$pagename = 'frontpage';
-lff_assemble_template($pagename);
+$pagename = 'page-builder';
+tc_assemble_template($pagename);
 ```
 
 Rules:
@@ -251,7 +254,7 @@ pages/
 
 Examples:
 
-* `pages/frontpage.php`
+* `pages/page-builder.php`
 * `pages/authors.php`
 * `pages/temas.php`
 * `pages/status404.php`
@@ -275,7 +278,6 @@ pages/partials/
 Examples:
 
 * `header.php`
-* `nav.php`
 * `footer.php`
 
 Rules:
@@ -297,6 +299,7 @@ pages/components/
 Examples:
 
 * `hero.php`
+* `navbar.php`
 * `archive-search.php`
 * `archive-grid.php`
 * `pagination.php`
@@ -318,7 +321,7 @@ Follow these rules when structuring code:
 * prefer small reusable components
 * avoid duplicated markup
 * separate layout from content
-* keep navbar and footer as global primitives
+* keep the navbar and footer as global primitives owned by the assembler
 * keep logic out of markup-heavy files when possible
 * place code according to responsibility, not convenience
 
@@ -338,16 +341,16 @@ theme/
     modify.php
     utils.php
   pages/
-    frontpage.php
+    page-builder.php
     authors.php
     temas.php
     status404.php
     partials/
       header.php
-      nav.php
       footer.php
     components/
       hero.php
+      navbar.php
       archive-search.php
       archive-grid.php
       pagination.php

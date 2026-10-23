@@ -6,15 +6,18 @@ if ($page_id <= 0) {
   $page_id = (int) get_the_ID();
 }
 
-tc_render_component('navbar');
-
 $sections = tc_get_page_builder_sections($page_id);
 
-foreach ($sections as $section) {
-  if (!is_array($section)) {
-    continue;
+if (empty($sections)) {
+  while (have_posts()) {
+    the_post();
+    the_content();
   }
 
+  return;
+}
+
+foreach ($sections as $section) {
   $component_name = isset($section['component']) ? (string) $section['component'] : '';
   $component_args = isset($section['args']) && is_array($section['args']) ? $section['args'] : array();
 

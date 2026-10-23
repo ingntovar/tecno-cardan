@@ -1,6 +1,6 @@
 <?php
 
-function tc_assemble_template($page_name, $exclude_nav = false) {
+function tc_assemble_template($page_name) {
   $theme_dir = get_template_directory();
   $page_path = $theme_dir . '/pages/' . $page_name . '.php';
 
@@ -12,9 +12,7 @@ function tc_assemble_template($page_name, $exclude_nav = false) {
 
   include $theme_dir . '/pages/partials/header.php';
 
-  if (!$exclude_nav) {
-    include $theme_dir . '/pages/partials/nav.php';
-  }
+  tc_render_component('navbar');
 
   echo '<main class="tc-main">';
   include $page_path;
